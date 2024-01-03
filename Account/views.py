@@ -6,9 +6,9 @@ from django.contrib.auth.views import LoginView
 from django.views.generic import CreateView,UpdateView
 from .models import User
 from .forms import UserCreateForm, UserProfileForm
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-
+from django.contrib import messages
 
 class UserProfileUpdateView(UpdateView):
     model = User
@@ -21,12 +21,17 @@ class UserProfileUpdateView(UpdateView):
         
 
 def add_to_cart(request, id):
-    
-    product = Product.objects.get(id=id)
-    request.user.shopping_cart.add(product)
-    last_page = request.META.get('HTTP_REFERER')
-   
-    return redirect(last_page)
+    if request.user.is_authenticated:
+        product = Product.objects.get(id=id)
+        request.user.shopping_cart.add(product)
+        last_page = request.META.get('HTTP_REFERER')
+
+        messages.success(request,f' کالای  { product.title } به سبد خرید اضافه شد ')
+        return redirect(last_page)
+    else:
+
+        return HttpResponse('salam')
+
     
 def remove_from_cart(request, id):
     

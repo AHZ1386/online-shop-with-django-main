@@ -34,4 +34,5 @@ urlpatterns = [
     path('product/',include('Store.urls')),
     path('category-list/', Store.CategoryListView.as_view(), name='category_list'),
 
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
