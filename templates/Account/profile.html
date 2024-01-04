@@ -3,48 +3,50 @@
 
 {% block main %}
 
-{% if user.shopping_cart.all %}
-{% for product in user.shopping_cart.all %}
-<div class="navbar navbar-default navbar-fixed-bottom">
-    <!-- Product image-->
-    <img class="card-img-top" src="{{product.image_1.url}}" alt="...">
-    <!-- Product details-->
-    <div class="card-body p-4">
-        <div class="text-center">
-            <!-- Product name-->
-            <h5 class="fw-bolder">{{product.title}}</h5>
-            <!-- Product reviews-->
-            <!-- <div class="d-flex justify-content-center small text-warning mb-2">
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                        <div class="bi-star-fill"></div>
-                    </div> -->
-            <!-- Product price-->
-            {{product.description|truncatewords:15}}
-            {{product.price}}:ريال
-        </div>
-    </div>
-    <!-- Product actions-->
-    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-        {% if user.is_authenticated != True %}
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                href="{% url 'store:product_detail' product.slug %}">دیدن محصول</a></div>
+    {% if user.shopping_cart.all %}
+        {% for product in user.shopping_cart.all %}
+            <div class="navbar navbar-default navbar-fixed-bottom">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{ product.image_1.url }}" alt="...">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{ product.title }}</h5>
+                        <!-- Product reviews-->
+                        <!-- <div class="d-flex justify-content-center small text-warning mb-2">
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                    <div class="bi-star-fill"></div>
+                                </div> -->
+                        <!-- Product price-->
+                        {{ product.description|truncatewords:15 }}
+                        {{ product.price }}:ريال
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    {% if user.is_authenticated != True %}
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                    href="{% url 'store:product_detail' product.slug %}">دیدن محصول</a>
+                        </div>
 
-        {%else%}
-        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
-                href="{% url 'remove_from_cart' product.id %}">حذف از سبد خرید</a></div>
+                    {% else %}
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto"
+                                                    href="{% url 'remove_from_cart' product.id %}">حذف از سبد خرید</a>
+                        </div>
 
-        {% endif %}
-    </div>
-</div>
+                    {% endif %}
+                </div>
+            </div>
 
 
-{% endfor %}
-{%else%}
-<h2>سبد خرید خالی است</h2>
-{% endif %}
-<a href="{% url 'go-to-getway' %}"> خرید</a>
+        {% endfor %}
+    {% else %}
+        <h2>سبد خرید خالی است</h2>
+    {% endif %}
+    <a href="{% url 'go-to-getway' %}"> خرید</a>
 
 {% endblock main %}

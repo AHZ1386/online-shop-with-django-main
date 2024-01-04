@@ -3,10 +3,10 @@ from django.db import models
 
 
 class User(AbstractUser):
-    shopping_cart = models.ManyToManyField('Store.Product', related_name='item',blank=True,null=True)
-    phone_number = models.CharField(max_length=11, unique=True,null=True)
+    shopping_cart = models.ManyToManyField('Store.Product', related_name='item', blank=True, null=True)
+    phone_number = models.CharField(max_length=11, unique=True, null=True)
     address = models.TextField(null=True)
-    
+
     def check_address(self):
         if self.address:
             return True
@@ -18,9 +18,9 @@ class User(AbstractUser):
             return True
         else:
             return False
+
     def check_shopping_cart(self):
         if self.shopping_cart:
             return True
         else:
             return False
-        

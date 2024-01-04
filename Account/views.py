@@ -1,14 +1,14 @@
-from typing import Any
-from django.db import models
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from Store.models import Product
-from django.contrib.auth.views import LoginView
-from django.views.generic import CreateView,UpdateView
-from .models import User
-from .forms import UserCreateForm, UserProfileForm
-from django.http import HttpResponseRedirect, HttpResponse,Http404
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
+from django.contrib.auth.views import LoginView
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import render, redirect
+from django.views.generic import CreateView, UpdateView
+
+from .forms import UserCreateForm, UserProfileForm
+from .models import User
+
 
 class UserProfileUpdateView(UpdateView):
     model = User
@@ -16,6 +16,7 @@ class UserProfileUpdateView(UpdateView):
     template_name = 'Account/edit_profile.html'
     form_class = UserProfileForm
     success_url = '/'
+
     def get_object(self, queryset=None):
         return self.request.user
 
@@ -42,6 +43,8 @@ def remove_from_cart(request, id):
         return redirect(last_page)
     except:
         raise Http404
+
+
 def view_shopping_cart(request):
     shopping_cart = request.user.shopping_cart.all()
     context = {
@@ -52,19 +55,19 @@ def view_shopping_cart(request):
 
 def profile(request):
     print(request.user.shopping_cart.all)
-    return render(request,'Account/profile.html')
+    return render(request, 'Account/profile.html')
 
 
 class UserLoginView(LoginView):
     template_name = 'Account/login.html'
-    
-    
+
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect('/')
         else:
             return super().get(request, *args, **kwargs)
-        
+
+
 class UserSingInView(CreateView):
     model = User
     success_url = '/'
