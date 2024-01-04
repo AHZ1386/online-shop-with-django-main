@@ -16,14 +16,14 @@ urlpatterns = [
     
     
     path("add-to-cart/<int:id>",Accounts.add_to_cart , name='add_to_cart'),
-    path("remove-from-cart/<int:id>",Accounts.remove_from_cart , name='remove_from_cart'),
+    path("remove-from-art/<int:id>",Accounts.remove_from_cart , name='remove_from_cart'),
     path("account/", include('Account.urls') ),
     # path("login/", Accounts.UserLoginView.as_view(), name='login'),
     
     
     
     # Payment
-
+    path('bankgateways/', az_bank_gateways_urls()),
     path('go-to-getway/',pay.go_to_gateway_view,name='go-to-getway'),
     
     
@@ -32,7 +32,5 @@ urlpatterns = [
     
     # Store
     path('product/',include('Store.urls')),
-    path('category-list/', Store.CategoryListView.as_view(), name='category_list'),
-
-
+path('category-list/', Store.CategoryListView.as_view(), name='category_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

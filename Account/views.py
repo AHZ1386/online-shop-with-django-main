@@ -17,8 +17,8 @@ class UserProfileUpdateView(UpdateView):
     form_class = UserProfileForm
     success_url = '/'
     def get_object(self, queryset=None):
-        return self.request.user 
-        
+        return self.request.user
+
 
 def add_to_cart(request, id):
     try:
@@ -32,13 +32,12 @@ def add_to_cart(request, id):
         raise Http404
 
 
-    
 def remove_from_cart(request, id):
     try:
         product = Product.objects.get(id=id)
         request.user.shopping_cart.remove(product)
         last_page = request.META.get('HTTP_REFERER')
-        messages.success(request,f'کالای {product.title} از سبد خرید حذف شد ')
+        messages.success(request, f'کالای {product.title} از سبد خرید حذف شد ')
 
         return redirect(last_page)
     except:
@@ -52,7 +51,7 @@ def view_shopping_cart(request):
 
 
 def profile(request):
-
+    print(request.user.shopping_cart.all)
     return render(request,'Account/profile.html')
 
 

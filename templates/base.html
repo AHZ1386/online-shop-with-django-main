@@ -58,15 +58,15 @@
         </ul>
         {% if user.is_authenticated != True %}
 
-        
+
         {% else %}
-        
+
           <button class="btn btn-outline-dark" type="submit">
             <i class="bi-cart-fill me-1"></i>
             سبد خرید
             <span class="badge bg-dark text-white ms-1 rounded-pill"> {{request.user.shopping_cart.count}} </span>
           </button>
-        
+
         {% endif %}
       </div>
     </div>
