@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import view_shopping_cart, profile, UserLoginView, UserSingInView, UserProfileUpdateView
+from .views import view_shopping_cart, profile, UserLoginView, UserSingInView, UserProfileUpdateView,signup,register
 
 app_name = 'Account'
 
@@ -10,4 +10,6 @@ urlpatterns = [
     path('login/', UserLoginView.as_view(), name='login'),
     path('singin/', UserSingInView.as_view(), name='singin'),
     path('edit-profile/', UserProfileUpdateView.as_view(), name='edit_profile'),
+    path('otp/',signup,name='otp'),
+    path('registration/',register,name='registration'),
 ]
