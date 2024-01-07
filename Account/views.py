@@ -110,16 +110,3 @@ class UserLoginView(LoginView):
             return HttpResponseRedirect('/')
         else:
             return super().get(request, *args, **kwargs)
-
-
-class UserSingInView(CreateView):
-    model = User
-    success_url = '/'
-    template_name = 'Account/singin.html'
-    form_class = UserCreateForm
-
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect(self.success_url)
-        else:
-            return super().get(request, *args, **kwargs)
