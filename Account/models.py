@@ -7,18 +7,19 @@ class User(AbstractUser):
     phone_number = models.CharField(max_length=11, unique=True, null=True)
     address = models.TextField(null=True)
 
+    # جک کردن پر بودن ادرس کاربر
     def check_address(self):
         if self.address:
             return True
         else:
             return False
-
+    # چک کرد پر بودن شماره تلفن کاربر
     def check_phone_number(self):
         if self.phone_number:
             return True
         else:
             return False
-
+    # چک کردن پر بودن لیست خرید کاربر
     def check_shopping_cart(self):
         if self.shopping_cart:
             return True
