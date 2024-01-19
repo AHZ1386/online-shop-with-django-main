@@ -26,6 +26,12 @@ class User(AbstractUser):
         else:
             return False
 
+    def check_registered(self):
+        if self.registered:
+            return True
+        else:
+            False
+
 class Otp(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     otp = models.PositiveSmallIntegerField(null=True)

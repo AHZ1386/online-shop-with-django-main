@@ -27,8 +27,8 @@ def signup(request):
         # password2 = form.cleaned_data.get('password2')
         if form.is_valid():
             user = form.save()
-            login(request,user)
-            generate_otp(user=request.user)
+
+            generate_otp(user)
 
             messages.success(request,'کد دریافت شده را وارد کنید')
             return HttpResponseRedirect(reverse('Account:registration'))
@@ -110,3 +110,10 @@ class UserLoginView(LoginView):
             return HttpResponseRedirect('/')
         else:
             return super().get(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        user = form.get_user()
+        if not user.registered:
+            messages.error(self.request, 'نام کاربری یا رمز عبور اشتباه است')
+            return HttpResponseRedirect(reverse('Account:login'))
+        return super().form_valid(form)
