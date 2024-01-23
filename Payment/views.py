@@ -1,5 +1,5 @@
 import logging
-
+from Store .models import Order
 from Store import models
 from azbankgateways import bankfactories, models as bank_models, default_settings as settings
 from azbankgateways.exceptions import AZBankGatewaysException
@@ -77,7 +77,7 @@ def callback_gateway_view(request):
 
         user = request.user
 
-        order, created = models.Order.objects.get_or_create(user=user)
+        order = Order.objects.create(user=user,status='aw')
 
         for item in user.shopping_cart.all():
             order.products.add(item)
@@ -86,7 +86,8 @@ def callback_gateway_view(request):
 
         # پرداخت با موفقیت انجام پذیرفته است و بانک تایید کرده است.
         # می توانید کاربر را به صفحه نتیجه هدایت کنید یا نتیجه را نمایش دهید.
-        return HttpResponse("پرداخت با موفقیت انجام شد.")
+        messages.success(request,'پرداخت با موفقیت انجام شده و سفارش شما ثبت شد')
+        return HttpResponseRedirect(reverse('index'))
 
     # پرداخت موفق نبوده است. اگر پول کم شده است ظرف مدت ۴۸ ساعت پول به حساب شما بازخواهد گشت.
     return HttpResponse(
