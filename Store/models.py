@@ -18,6 +18,11 @@ class Category(models.Model):
         return self.name
 
 
+class Brad(models.Model):
+    name = models.CharField(max_length=75)
+    slug = models.SlugField(max_length=50, null=True)
+    image = models.ImageField(upload_to='Product/brand', null=True)
+
 class Product(models.Model):
     title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
@@ -26,6 +31,7 @@ class Product(models.Model):
     image_1 = models.ImageField(upload_to='Product', null=True)
     image_2 = models.ImageField(upload_to='Product', null=True)
     image_3 = models.ImageField(upload_to='Product', null=True)
+    Brad = models.ForeignKey(Brad, on_delete=models.CASCADE,null=True, related_name='brand')
     slug = models.SlugField(max_length=50, null=True)
 
     def __str__(self):
