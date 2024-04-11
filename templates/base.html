@@ -44,7 +44,7 @@
                         <li>
                         <li><a class="dropdown-item" href="{% url "Account:login" %}">وارد شدن</a></li>
                         <li>
-                        <li><a class="dropdown-item" >ثبت نام</a></li>
+                        <li><a href="{% url 'Account:singin' %}" class="dropdown-item" >ثبت نام</a></li>
                         <li>
                             <hr class="dropdown-divider"/>
                         </li>
@@ -87,6 +87,12 @@
 
 <!-- Section-->
 <section class="py-5">
+        {% if user.is_active == False %}
+            <div class="alert alert-success alert-dismissible fade show " role="alert">
+                شما هنوز احراز هویت نکردید
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endif %}
     {% if messages %}
 
         {% for message in messages %}

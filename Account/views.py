@@ -21,13 +21,10 @@ def generate_otp(user):
 def signup(request):
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
-        # username = form.cleaned_data.get('username')
-        # phone_number = form.cleaned_data.get('phone_number')
-        # password1 = form.cleaned_data.get('password1')
-        # password2 = form.cleaned_data.get('password2')
         if form.is_valid():
             user = form.save()
-
+            user.is_staff = False
+            user.save()
             generate_otp(user)
 
             messages.success(request,'کد دریافت شده را وارد کنید')
@@ -48,6 +45,7 @@ def register(request):
                 user = get_object_or_404(User, id=user_otp.user.pk)
 
                 user.registered = True
+                user.is_staff = True
                 user.save()
                 messages.success(request,'احراز هویت با موفقیت انجام شد')
                 return HttpResponseRedirect('/')
