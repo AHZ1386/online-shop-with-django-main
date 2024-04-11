@@ -11,23 +11,31 @@ from .models import User
 from .models import Otp
 from django.contrib.auth import login
 from django.utils import timezone
+from django.db import transaction
 
+@transaction.atomic
 def generate_otp(user):
-    otp_expiry = timezone.now() + timedelta(seconds=120)
-    otp_code = randint(1000,9999)
-    otp = Otp.objects.create(user=user,otp=otp_code,expiration_date=otp_expiry)
-    print(otp_code)
+    try:
+        user = User.objects.get(id=user.id)
+    except User.DoesNotExist:
+        return None
+
+    exiting_otp = Otp.objects.filter(user=user,expiration_date=timezone.now()).first()
+    if exiting_otp:
+        print(exiting_otp.otp)
+    else:
+        otp_code = randint(1000,9999)
+        otp = Otp.objects.create(user=user,expiration_date=timezone.now()+timedelta(seconds=120),otp=otp_code)
+        print(otp)
 
 def signup(request):
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user.is_staff = False
+            user.registered = False
             user.save()
-            generate_otp(user)
-
-            messages.success(request,'کد دریافت شده را وارد کنید')
+            login(request, user)
             return HttpResponseRedirect(reverse('Account:registration'))
     else:
         form = UserCreateForm()
@@ -45,13 +53,13 @@ def register(request):
                 user = get_object_or_404(User, id=user_otp.user.pk)
 
                 user.registered = True
-                user.is_staff = True
                 user.save()
                 messages.success(request,'احراز هویت با موفقیت انجام شد')
                 return HttpResponseRedirect('/')
             else:
                 return HttpResponse('کد اشتباه است')
     else:
+            generate_otp(request.user)
             form = OtpForm()
     return render(request, 'Account/registration.html', {'form': form})
 class UserProfileUpdateView(UpdateView):
@@ -109,9 +117,3 @@ class UserLoginView(LoginView):
         else:
             return super().get(request, *args, **kwargs)
 
-    def form_valid(self, form):
-        user = form.get_user()
-        if not user.registered:
-            messages.error(self.request, 'نام کاربری یا رمز عبور اشتباه است')
-            return HttpResponseRedirect(reverse('Account:login'))
-        return super().form_valid(form)

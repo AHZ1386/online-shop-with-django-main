@@ -11,7 +11,7 @@ from django.urls import reverse
 
 
 def go_to_gateway_view(request):
-    if request.user.is_authenticated == True:
+    if request.user.is_authenticated == True and request.user.registered == True:
         if request.user.shopping_cart.exists():
 
             if request.user.check_address() and request.user.check_address():

@@ -1,55 +1,51 @@
 import Account.models
-from django.contrib.auth.models import AbstractUser,BaseUserManager
+from django.contrib.auth.models import AbstractUser,BaseUserManager,AbstractBaseUser
 from django.db import models
-from django.contrib.auth.hashers import (
-    check_password,
-    is_password_usable,
-    make_password,
-)
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth import get_user_model
+from phonenumber_field.modelfields import PhoneNumberField
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from phonenumber_field.modelfields import PhoneNumberField
+
 class CustomUserManager(BaseUserManager):
-    use_in_migrations = True
-
-    def _create_user(self, phone_number, password, **extra_fields):
-        """
-         ساختن و ذخیره یک کاربر با استفاده از password  و phone_number
-        """
+    def create_user(self, phone_number, password=None, **extra_fields):
         if not phone_number:
-            raise ValueError("The given phone_number must be set")
-
-        GlobalUserModel = Account.models.User(
-            self.model._meta.app_label, self.model._meta.object_name
-        )
-
-        username = f"user_{phone_number}"  # تعیین مقدار username بر اساس شماره تلفن
-        user = self.model(phone_number=phone_number, username=username, **extra_fields)
-        user.password = make_password(password)
+            raise ValueError('The Phone Number field must be set')
+        user = self.model(phone_number=phone_number, **extra_fields)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_user(self, phone_number, password=None, **extra_fields):
-        extra_fields.setdefault("is_staff", False)
-        extra_fields.setdefault("is_superuser", False)
-        return self._create_user(phone_number, password, **extra_fields)
-
     def create_superuser(self, phone_number, password=None, **extra_fields):
-        extra_fields.setdefault("is_staff", True)
-        extra_fields.setdefault("is_superuser", True)
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
 
-        if extra_fields.get("is_staff") is not True:
-            raise ValueError("Superuser must have is_staff=True.")
-        if extra_fields.get("is_superuser") is not True:
-            raise ValueError("Superuser must have is_superuser=True.")
+        if extra_fields.get('is_staff') is not True:
+            raise ValueError('Superuser must have is_staff=True.')
+        if extra_fields.get('is_superuser') is not True:
+            raise ValueError('Superuser must have is_superuser=True.')
 
-        return self._create_user( phone_number, password, **extra_fields)
-class User(AbstractUser):
-    user_name = None
-    email = None
-    shopping_cart = models.ManyToManyField('Store.Product', related_name='item', blank=True, null=True)
-    phone_number = models.CharField(max_length=11, unique=True, null=True)
+        return self.create_user(phone_number, password, **extra_fields)
+
+class User(AbstractBaseUser, PermissionsMixin):
+    first_name = models.CharField(max_length=250)
+    last_name = models.CharField(max_length=250)
+    phone_number = PhoneNumberField(unique=True)
     address = models.TextField(null=True)
-    registered = models.BooleanField(null=True)
-    USERNAME_FIELD = "phone_number"
+    registered = models.BooleanField(default=False)
+
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField(default=False)
+    objects = CustomUserManager()
+
+    USERNAME_FIELD = 'phone_number'
     REQUIRED_FIELDS = []
+
+    def __str__(self):
+        return str(self.phone_number)
+
 
     objects = CustomUserManager()
     # جک کردن پر بودن ادرس کاربر

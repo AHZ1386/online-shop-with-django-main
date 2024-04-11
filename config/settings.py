@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     
     'crispy_forms',
     'crispy_bootstrap5',
+
+    'phonenumber_field',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +166,7 @@ AZ_IRANIAN_BANK_GATEWAYS = {
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# phone number
+PHONENUMBER_DEFAULT_REGION = 'IR'
+PHONENUMBER_DEFAULT_FORMAT = 'NATIONAL'

@@ -87,11 +87,13 @@
 
 <!-- Section-->
 <section class="py-5">
-        {% if user.is_active == False %}
-            <div class="alert alert-success alert-dismissible fade show " role="alert">
-                شما هنوز احراز هویت نکردید
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+        {% if user.is_authenticated %}
+            {% if user.registered == False %}
+                <div class="alert alert-success alert-dismissible fade show " role="alert">
+                     شما هنوز احراز هویت نکردید <a href="{% url 'Account:registration' %}"> احراز هویت </a>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endif %}
         {% endif %}
     {% if messages %}
 
