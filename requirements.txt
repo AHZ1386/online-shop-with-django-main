@@ -6,6 +6,7 @@ charset-normalizer==3.3.0
 crispy-bootstrap5==2023.10
 Django==4.2.6
 django-crispy-forms==2.1
+django-phonenumber-field==7.3.0
 django-tinymce==3.6.1
 idna==3.4
 isodate==0.6.1

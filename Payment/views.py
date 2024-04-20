@@ -26,7 +26,7 @@ def go_to_gateway_view(request):
 
                 amount = total_price
                 # تنظیم شماره موبایل کاربر از هر جایی که مد نظر است
-                user_mobile_number = '+989112221234'  # اختیاری
+                user_mobile_number = str(user.phone_number)  # اختیاری
 
                 factory = bankfactories.BankFactory()
 
