@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+
+{% block main %}
+    <h4>سفارشات انجام شده</h4>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">شماره سفارش</th>
+                <th scope="col">مجموع مبلغ</th>
+                <th scope="col">وضعیت</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for order in completed_orders %}
+                <tr>
+                    <td>{{ order.pk }}</td>
+                    <td>{{ order.total_price }}:ريال</td>
+                    <td>انجام شده</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if processing_orders %}
+        <h3>سفارشات در حال پردازش</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">شماره سفارش</th>
+                    <th scope="col">مجموع مبلغ</th>
+                    <th scope="col">وضعیت</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in processing_orders %}
+                    <tr>
+                        <td>{{ order.pk }}</td>
+                        <td>{{ order.total_price }}:ريال</td>
+                        <td>در حال پردازش</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <h4>سفارشی در حال انجام نیست</h4>
+    {% endif %}
+{% endblock %}

@@ -97,10 +97,7 @@ def remove_from_cart(request, id):
         raise Http404
 
 
-def view_shopping_cart(request):
-    shopping_cart = request.user.shopping_cart.all()
-    context = {'shopping_cart': shopping_cart}
-    return render(request, 'test.html', context)
+
 
 
 def profile(request):
@@ -117,3 +114,23 @@ class UserLoginView(LoginView):
         else:
             return super().get(request, *args, **kwargs)
 
+
+def user_cart(request):
+    user = request.user
+    total_price = 0
+    for item in request.user.shopping_cart.all():
+        total_price += item.price
+    context = {
+        'products':user.shopping_cart.all(),
+        'total_price': total_price
+    }
+    return render(request,'Account/cart.html',context)
+
+def user_orders(request):
+    user = request.user
+    context = {
+        'completed_orders':user.order.all().filter(status='do'),
+
+        'processing_orders':user.order.all().exclude(status='do')
+    }
+    return render(request,'Account/orders.html',context)

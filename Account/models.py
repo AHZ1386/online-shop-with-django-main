@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     phone_number = PhoneNumberField(unique=True)
     address = models.TextField(null=True)
     registered = models.BooleanField(default=False)
-
+    shopping_cart = models.ManyToManyField('Store.Product', related_name='item', blank=True, null=True)
 
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)

@@ -1,4 +1,5 @@
 {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,13 +65,20 @@
 
 
             {% else %}
-
+                <a href="{% url 'Account:shopping-cart' %}">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
                     سبد خرید
-                    <span class="badge bg-dark text-white ms-1 rounded-pill"> {{ request.user.shopping_cart.count }} </span>
-                </button>
+                    {% if request.user.shopping_cart.count %}
+                    	 <span class="badge bg-dark text-white ms-1 rounded-pill"> {{ request.user.shopping_cart.count }} </span>
 
+                    {% else %}
+                        <span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
+                    {% endif %}
+
+
+                </button>
+                </a>
             {% endif %}
         </div>
     </div>

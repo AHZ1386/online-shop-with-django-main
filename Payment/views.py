@@ -52,7 +52,7 @@ def go_to_gateway_view(request):
 
 
             else:
-                messages.success(request, 'اطلاعات شما برای ادامه خرید ناقس است لطفا اطلاعات خود را تکمیل کنید')
+                messages.success(request, 'اطلاعات شما برای ادامه خرید ناقص است لطفا اطلاعات خود را تکمیل کنید')
                 return HttpResponseRedirect(reverse('Account:edit_profile'))
         else:
             return HttpResponseRedirect('/')
@@ -76,8 +76,8 @@ def callback_gateway_view(request):
     if bank_record.is_success:
 
         user = request.user
-
-        order = Order.objects.create(user=user,status='aw')
+        total_price = user.shopping_cart.all().aggregate(Sum('price'))
+        order = Order.objects.create(user=user,status='aw',total_price=total_price['price__sum'])
 
         for item in user.shopping_cart.all():
             order.products.add(item)

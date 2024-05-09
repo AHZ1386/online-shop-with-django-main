@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% for product in products %}
+        <div class="col mb-5">
+            <div class="card h-100">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{ product.image_1.url }}" alt="{{ product.title }}">
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <a href="{% url 'store:product_detail' product.slug %}">
+                            <h5 class="fw-bolder">{{ product.title }}</h5>
+                        </a>
+                        <!-- Product description and price-->
+                        {{ product.description|truncatewords:15 }}
+                        {{ product.price }}:ريال
+                    </div>
+                </div>
+                <!-- Product actions-->
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    {% if product not in user.shopping_cart.all %}
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'add_to_cart' product.id %}">افزودن به سبد خرید</a>
+                        </div>
+                    {% else %}
+                        <div class="text-center">
+                            <a class="btn btn-outline-dark mt-auto" href="{% url 'remove_from_cart' product.id %}">خذف از سبد خرید</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+    <!-- Total Price Section -->
+    <div class="text-center mt-4">
+        <h4>مجموع نهایی: {{ total_price }}:ريال</h4>
+    </div>
+
+    <!-- Checkout Button Section -->
+    <div class="text-center mt-4">
+        <a class="btn btn-primary" href="{% url 'go-to-getway' %}">تایید سبد خرید و پرداخت</a>
+    </div>
+{% endblock %}

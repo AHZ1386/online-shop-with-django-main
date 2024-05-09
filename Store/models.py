@@ -1,4 +1,5 @@
 from django.db import models
+from django.db.models import Sum
 
 ORDER_STATUS_CHOICES = (
     # Awaiting confirmation
@@ -8,7 +9,8 @@ ORDER_STATUS_CHOICES = (
     # Ready to send
     ('r','اماده ارسال از انبار'),
     # Delivery
-    ('d','تحویل پست داده شده'))
+    ('d','تحویل پست داده شده'),
+    ('do','تحویل مشتری داده شد'),)
 class Category(models.Model):
     name = models.CharField(max_length=100, null=True)
     image = models.ImageField(upload_to='Product', null=True)
@@ -39,6 +41,7 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    user = models.ForeignKey('Account.User', on_delete=models.CASCADE)
+    user = models.ForeignKey('Account.User', on_delete=models.CASCADE,related_name='order')
     products = models.ManyToManyField(Product, related_name='products')
     status = models.CharField(max_length=2,choices=ORDER_STATUS_CHOICES)
+    total_price = models.IntegerField(null=True,blank=True)
