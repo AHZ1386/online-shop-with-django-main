@@ -6,17 +6,16 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-
-from .views import test
+from .views import InedexListView
 
 urlpatterns = [
 
-    path('admin/', admin.site.urls), path("", test, name='index'), # Account
+    path('admin/', admin.site.urls),
+    path("", InedexListView.as_view() , name='index'), # Account
 
     path("add-to-cart/<int:id>", Accounts.add_to_cart, name='add_to_cart'),
     path("remove-from-art/<int:id>", Accounts.remove_from_cart, name='remove_from_cart'),
     path("account/", include('Account.urls')),
-                  # path("login/", Accounts.UserLoginView.as_view(), name='login'),
 
                   # Payment
     path('bankgateways/', az_bank_gateways_urls()),
