@@ -9,7 +9,7 @@ from random import randint
 from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm
 from .models import User
 from .models import Otp
-from django.contrib.auth import login
+from django.contrib.auth import login,logout
 from django.utils import timezone
 from django.db import transaction
 from django.contrib.auth import update_session_auth_hash
@@ -154,3 +154,9 @@ def change_password(request):
     else:
         form = ChangePasswordForm()
     return render(request,template_name='Account/chang_password.html',context={'form':form})
+
+
+def login_view(request):
+    logout(request)
+    messages.success(request,'با موفقیت از اکانت خارج شدید')
+    return HttpResponseRedirect('/')
