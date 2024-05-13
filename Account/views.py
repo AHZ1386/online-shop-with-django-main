@@ -6,13 +6,13 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404,reverse
 from django.views.generic import CreateView, UpdateView
 from random import randint
-from .forms import UserCreateForm, UserProfileForm,OtpForm
+from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm
 from .models import User
 from .models import Otp
 from django.contrib.auth import login
 from django.utils import timezone
 from django.db import transaction
-
+from django.contrib.auth import update_session_auth_hash
 @transaction.atomic
 def generate_otp(user):
     try:
@@ -134,3 +134,23 @@ def user_orders(request):
         'processing_orders':user.order.all().exclude(status='do')
     }
     return render(request,'Account/orders.html',context)
+
+
+def change_password(request):
+    user = request.user
+    if request.method == 'POST':
+        form = ChangePasswordForm(request.POST)
+        if form.is_valid():
+            old_password = form.cleaned_data.get('old_password')
+            new_password = form.cleaned_data.get('new_password')
+            user.set_password(new_password)
+            user.save()
+            update_session_auth_hash(request, user)
+            messages.success(request,'تغییر رمز عبور با موفقیت انجام شد')
+            return HttpResponseRedirect('/')
+        else:
+            messages.error(request,'ارورر')
+
+    else:
+        form = ChangePasswordForm()
+    return render(request,template_name='Account/chang_password.html',context={'form':form})
