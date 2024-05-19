@@ -9,10 +9,11 @@ from random import randint
 from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm
 from .models import User
 from .models import Otp
-from django.contrib.auth import login,logout
+from django.contrib.auth import login,logout,update_session_auth_hash
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.db import transaction
-from django.contrib.auth import update_session_auth_hash
 @transaction.atomic
 def generate_otp(user):
     try:
@@ -62,9 +63,9 @@ def register(request):
             generate_otp(request.user)
             form = OtpForm()
     return render(request, 'Account/registration.html', {'form': form})
-class UserProfileUpdateView(UpdateView):
+
+class UserProfileUpdateView(UpdateView,LoginRequiredMixin):
     model = User
-    print('amir')
     template_name = 'Account/edit_profile.html'
     form_class = UserProfileForm
     success_url = '/'
@@ -72,7 +73,7 @@ class UserProfileUpdateView(UpdateView):
     def get_object(self, queryset=None):
         return self.request.user
 
-
+@login_required()
 def add_to_cart(request, id):
     try:
         product = Product.objects.get(id=id)
@@ -84,7 +85,7 @@ def add_to_cart(request, id):
     except:
         raise Http404
 
-
+@login_required()
 def remove_from_cart(request, id):
     try:
         product = Product.objects.get(id=id)
@@ -99,10 +100,9 @@ def remove_from_cart(request, id):
 
 
 
-
+@login_required()
 def profile(request):
-    print(request.user.shopping_cart.all)
-    return render(request, 'Account/profile.html')
+        return render(request, 'Account/profile.html')
 
 
 class UserLoginView(LoginView):
@@ -114,7 +114,7 @@ class UserLoginView(LoginView):
         else:
             return super().get(request, *args, **kwargs)
 
-
+@login_required()
 def user_cart(request):
     user = request.user
     total_price = 0
@@ -125,7 +125,7 @@ def user_cart(request):
         'total_price': total_price
     }
     return render(request,'Account/cart.html',context)
-
+@login_required()
 def user_orders(request):
     user = request.user
     context = {
@@ -135,7 +135,7 @@ def user_orders(request):
     }
     return render(request,'Account/orders.html',context)
 
-
+@login_required()
 def change_password(request):
     user = request.user
     if request.method == 'POST':
@@ -155,7 +155,7 @@ def change_password(request):
         form = ChangePasswordForm()
     return render(request,template_name='Account/chang_password.html',context={'form':form})
 
-
+@login_required()
 def login_view(request):
     logout(request)
     messages.success(request,'با موفقیت از اکانت خارج شدید')
