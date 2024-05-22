@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
 
     'phonenumber_field',
+
+    'Custom_admin',
 ]
 
 MIDDLEWARE = [

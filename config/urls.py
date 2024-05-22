@@ -27,5 +27,8 @@ urlpatterns = [
                   # Store
     path('product/', include('Store.urls')),
     path('category-list/', Store.CategoryListView.as_view(), name='category_list'),
+
+                  #Custom Admin
+    path('custom-admin/',include('Custom_admin.urls')),
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -45,3 +45,4 @@ class Order(models.Model):
     products = models.ManyToManyField(Product, related_name='products')
     status = models.CharField(max_length=2,choices=ORDER_STATUS_CHOICES)
     total_price = models.IntegerField(null=True,blank=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True)
