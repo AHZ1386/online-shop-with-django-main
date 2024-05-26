@@ -74,8 +74,8 @@ navigation:
       url: javascript/control-sidebar.html
     - title: Direct Chat
       url: javascript/direct-chat.html
-    - title: Todo List
-      url: javascript/todo-list.html
+    - title:   List
+      url: javascript/ -list.html
 - title: Browser Support
   url: browser-support.html
   icon: fab fa-chrome

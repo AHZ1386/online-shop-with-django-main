@@ -14741,14 +14741,14 @@ html.maximized-card {
   font-weight: 400;
 }
 
-.todo-list {
+. -list {
   list-style: none;
   margin: 0;
   overflow: auto;
   padding: 0;
 }
 
-.todo-list > li {
+. -list > li {
   border-radius: 2px;
   background: #f8f9fa;
   border-left: 2px solid #e9ecef;
@@ -14757,163 +14757,163 @@ html.maximized-card {
   padding: 10px;
 }
 
-.todo-list > li:last-of-type {
+. -list > li:last-of-type {
   margin-bottom: 0;
 }
 
-.todo-list > li > input[type='checkbox'] {
+. -list > li > input[type='checkbox'] {
   margin: 0 10px 0 5px;
 }
 
-.todo-list > li .text {
+. -list > li .text {
   display: inline-block;
   font-weight: 600;
   margin-left: 5px;
 }
 
-.todo-list > li .badge {
+. -list > li .badge {
   font-size: .7rem;
   margin-left: 10px;
 }
 
-.todo-list > li .tools {
+. -list > li .tools {
   color: #dc3545;
   display: none;
   float: right;
 }
 
-.todo-list > li .tools > .fa,
-.todo-list > li .tools > .fas,
-.todo-list > li .tools > .far,
-.todo-list > li .tools > .fab,
-.todo-list > li .tools > .glyphicon,
-.todo-list > li .tools > .ion {
+. -list > li .tools > .fa,
+. -list > li .tools > .fas,
+. -list > li .tools > .far,
+. -list > li .tools > .fab,
+. -list > li .tools > .glyphicon,
+. -list > li .tools > .ion {
   cursor: pointer;
   margin-right: 5px;
 }
 
-.todo-list > li:hover .tools {
+. -list > li:hover .tools {
   display: inline-block;
 }
 
-.todo-list > li.done {
+. -list > li.done {
   color: #697582;
 }
 
-.todo-list > li.done .text {
+. -list > li.done .text {
   font-weight: 500;
   text-decoration: line-through;
 }
 
-.todo-list > li.done .badge {
+. -list > li.done .badge {
   background: #adb5bd !important;
 }
 
-.todo-list .primary {
+. -list .primary {
   border-left-color: #007bff;
 }
 
-.todo-list .secondary {
+. -list .secondary {
   border-left-color: #6c757d;
 }
 
-.todo-list .success {
+. -list .success {
   border-left-color: #28a745;
 }
 
-.todo-list .info {
+. -list .info {
   border-left-color: #17a2b8;
 }
 
-.todo-list .warning {
+. -list .warning {
   border-left-color: #ffc107;
 }
 
-.todo-list .danger {
+. -list .danger {
   border-left-color: #dc3545;
 }
 
-.todo-list .light {
+. -list .light {
   border-left-color: #f8f9fa;
 }
 
-.todo-list .dark {
+. -list .dark {
   border-left-color: #343a40;
 }
 
-.todo-list .navy {
+. -list .navy {
   border-left-color: #001f3f;
 }
 
-.todo-list .olive {
+. -list .olive {
   border-left-color: #3d9970;
 }
 
-.todo-list .lime {
+. -list .lime {
   border-left-color: #01ff70;
 }
 
-.todo-list .fuchsia {
+. -list .fuchsia {
   border-left-color: #f012be;
 }
 
-.todo-list .maroon {
+. -list .maroon {
   border-left-color: #d81b60;
 }
 
-.todo-list .blue {
+. -list .blue {
   border-left-color: #007bff;
 }
 
-.todo-list .indigo {
+. -list .indigo {
   border-left-color: #6610f2;
 }
 
-.todo-list .purple {
+. -list .purple {
   border-left-color: #6f42c1;
 }
 
-.todo-list .pink {
+. -list .pink {
   border-left-color: #e83e8c;
 }
 
-.todo-list .red {
+. -list .red {
   border-left-color: #dc3545;
 }
 
-.todo-list .orange {
+. -list .orange {
   border-left-color: #fd7e14;
 }
 
-.todo-list .yellow {
+. -list .yellow {
   border-left-color: #ffc107;
 }
 
-.todo-list .green {
+. -list .green {
   border-left-color: #28a745;
 }
 
-.todo-list .teal {
+. -list .teal {
   border-left-color: #20c997;
 }
 
-.todo-list .cyan {
+. -list .cyan {
   border-left-color: #17a2b8;
 }
 
-.todo-list .white {
+. -list .white {
   border-left-color: #ffffff;
 }
 
-.todo-list .gray {
+. -list .gray {
   border-left-color: #6c757d;
 }
 
-.todo-list .gray-dark {
+. -list .gray-dark {
   border-left-color: #343a40;
 }
 
-.todo-list .handle {
+. -list .handle {
   cursor: move;
   display: inline-block;
   margin: 0 5px;

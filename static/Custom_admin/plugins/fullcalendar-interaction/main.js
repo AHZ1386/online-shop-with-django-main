@@ -241,7 +241,7 @@ Docs & License: https://fullcalendar.io/
         PointerDragging.prototype.createEventFromMouse = function (ev, isFirst) {
             var deltaX = 0;
             var deltaY = 0;
-            // TODO: repeat code
+            //  : repeat code
             if (isFirst) {
                 this.origPageX = ev.pageX;
                 this.origPageY = ev.pageY;
@@ -276,7 +276,7 @@ Docs & License: https://fullcalendar.io/
                 pageX = ev.pageX;
                 pageY = ev.pageY;
             }
-            // TODO: repeat code
+            //  : repeat code
             if (isFirst) {
                 this.origPageX = pageX;
                 this.origPageY = pageY;
@@ -985,7 +985,7 @@ Docs & License: https://fullcalendar.io/
                 _this.processFirstCoord(ev);
                 if (_this.initialHit || !_this.requireInitial) {
                     dragging.setIgnoreMove(false);
-                    _this.emitter.trigger('pointerdown', ev); // TODO: fire this before computing processFirstCoord, so listeners can cancel. this gets fired by almost every handler :(
+                    _this.emitter.trigger('pointerdown', ev); //  : fire this before computing processFirstCoord, so listeners can cancel. this gets fired by almost every handler :(
                 }
                 else {
                     dragging.setIgnoreMove(true);
@@ -1090,7 +1090,7 @@ Docs & License: https://fullcalendar.io/
                             !component.props.dateProfile || // hack for DayTile
                                 core.rangeContainsRange(component.props.dateProfile.activeRange, hit.dateSpan.range)) &&
                             (!bestHit || hit.layer > bestHit.layer)) {
-                            // TODO: better way to re-orient rectangle
+                            //  : better way to re-orient rectangle
                             hit.rect.left += originLeft;
                             hit.rect.right += originLeft;
                             hit.rect.top += originTop;
@@ -1368,13 +1368,13 @@ Docs & License: https://fullcalendar.io/
                     core.disableCursor();
                 }
                 if (!isFinal) {
-                    if (initialCalendar === receivingCalendar && // TODO: write test for this
+                    if (initialCalendar === receivingCalendar && //  : write test for this
                         isHitsEqual(initialHit, hit)) {
                         mutation = null;
                     }
                     _this.dragging.setMirrorNeedsRevert(!mutation);
                     // render the mirror if no already-rendered mirror
-                    // TODO: wish we could somehow wait for dispatch to guarantee render
+                    //  : wish we could somehow wait for dispatch to guarantee render
                     _this.dragging.setMirrorIsVisible(!hit || !document.querySelector('.fc-mirror'));
                     // assign states based on new hit
                     _this.receivingCalendar = receivingCalendar;
@@ -1535,7 +1535,7 @@ Docs & License: https://fullcalendar.io/
             this.validMutation = null;
             this.mutatedRelevantEvents = null;
         };
-        EventDragging.SELECTOR = '.fc-draggable, .fc-resizable'; // TODO: test this in IE11
+        EventDragging.SELECTOR = '.fc-draggable, .fc-resizable'; //  : test this in IE11
         return EventDragging;
     }(core.Interaction));
     function computeEventMutation(hit0, hit1, massagers) {
@@ -1582,7 +1582,7 @@ Docs & License: https://fullcalendar.io/
         function EventDragging(settings) {
             var _this = _super.call(this, settings) || this;
             // internal state
-            _this.draggingSeg = null; // TODO: rename to resizingSeg? subjectSeg?
+            _this.draggingSeg = null; //  : rename to resizingSeg? subjectSeg?
             _this.eventRange = null;
             _this.relevantEvents = null;
             _this.validMutation = null;
@@ -1798,7 +1798,7 @@ Docs & License: https://fullcalendar.io/
             documentPointer.shouldWatchScroll = false;
             documentPointer.emitter.on('pointerup', this.onDocumentPointerUp);
             /*
-            TODO: better way to know about whether there was a selection with the pointer
+             : better way to know about whether there was a selection with the pointer
             */
             calendar.on('select', this.onSelect);
         }
@@ -1849,7 +1849,7 @@ Docs & License: https://fullcalendar.io/
                 }
                 _this.displayDrag(receivingCalendar, interaction);
                 // show mirror if no already-rendered mirror element OR if we are shutting down the mirror (?)
-                // TODO: wish we could somehow wait for dispatch to guarantee render
+                //  : wish we could somehow wait for dispatch to guarantee render
                 dragging.setMirrorIsVisible(isFinal || !droppableEvent || !document.querySelector('.fc-mirror'));
                 if (!isInvalid) {
                     core.enableCursor();
@@ -1995,7 +1995,7 @@ Docs & License: https://fullcalendar.io/
                         minDistance :
                         (ev.isTouch ? 0 : core.globalDefaults.eventDragMinDistance);
                 dragging.delay =
-                    ev.isTouch ? // TODO: eventually read eventLongPressDelay instead vvv
+                    ev.isTouch ? //  : eventually read eventLongPressDelay instead vvv
                         (longPressDelay != null ? longPressDelay : core.globalDefaults.longPressDelay) :
                         0;
             };
@@ -2013,7 +2013,7 @@ Docs & License: https://fullcalendar.io/
                 dragging.pointer.selector = settings.itemSelector;
             }
             if (settings.appendTo != null) {
-                dragging.mirror.parentNode = settings.appendTo; // TODO: write tests
+                dragging.mirror.parentNode = settings.appendTo; //  : write tests
             }
             dragging.emitter.on('pointerdown', this.handlePointerDown);
             dragging.emitter.on('dragstart', this.handleDragStart);

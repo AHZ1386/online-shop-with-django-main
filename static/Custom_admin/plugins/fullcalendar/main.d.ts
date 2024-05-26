@@ -2456,10 +2456,10 @@ declare module '@fullcalendar/core/common/slicing-utils' {
     export { Slicer as default, Slicer };
     abstract class Slicer<SegType extends Seg, ExtraArgs extends any[] = []> {
         abstract sliceRange(dateRange: DateRange, ...extraArgs: ExtraArgs): SegType[];
-        sliceProps(props: SliceableProps, dateProfile: DateProfile, nextDayThreshold: Duration | null, component: DateComponent<any>, // TODO: kill
+        sliceProps(props: SliceableProps, dateProfile: DateProfile, nextDayThreshold: Duration | null, component: DateComponent<any>, //  : kill
         ...extraArgs: ExtraArgs): SlicedProps<SegType>;
         sliceNowDate(// does not memoize
-        date: DateMarker, component: DateComponent<any>, // TODO: kill
+        date: DateMarker, component: DateComponent<any>, //  : kill
         ...extraArgs: ExtraArgs): SegType[];
     }
 }

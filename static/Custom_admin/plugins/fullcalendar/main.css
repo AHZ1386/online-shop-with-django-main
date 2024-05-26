@@ -41,7 +41,7 @@ body .fc {
 }
 
 .fc-popover .fc-header {
-  /* TODO: be more consistent with fc-head/fc-body */
+  /*  : be more consistent with fc-head/fc-body */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -241,7 +241,7 @@ temporary rendered events).
   -webkit-overflow-scrolling: touch;
 }
 
-/* TODO: move to timegrid/daygrid */
+/*  : move to timegrid/daygrid */
 .fc-scroller > .fc-day-grid,
 .fc-scroller > .fc-time-grid {
   position: relative;
@@ -549,7 +549,7 @@ a.fc-more:hover {
 }
 
 /*
-TODO: more distinction between this file and common.css
+ : more distinction between this file and common.css
 */
 /* Colors
 --------------------------------------------------------------------------------------------------*/

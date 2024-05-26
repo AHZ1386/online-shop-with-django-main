@@ -1120,7 +1120,7 @@ function Buffer (arg, encodingOrOffset, length) {
 
 Buffer.poolSize = 8192 // not used by this implementation
 
-// TODO: Legacy, not needed anymore. Remove in next major version.
+//  : Legacy, not needed anymore. Remove in next major version.
 Buffer._augment = function (arr) {
   arr.__proto__ = Buffer.prototype
   return arr
@@ -8253,7 +8253,7 @@ Writable.prototype.pipe = function () {
 
 function writeAfterEnd(stream, cb) {
   var er = new Error('write after end');
-  // TODO: defer error events consistently everywhere, not just the cb
+  //  : defer error events consistently everywhere, not just the cb
   stream.emit('error', er);
   pna.nextTick(cb, er);
 }
@@ -10627,7 +10627,7 @@ TextTools.prototype.buildInlines = function (textArray, styleContextStack) {
 TextTools.prototype.sizeOfString = function (text, styleContextStack) {
 	text = text ? text.toString().replace(/\t/g, '    ') : '';
 
-	//TODO: refactor - extract from measure
+	// : refactor - extract from measure
 	var fontName = getStyleProperty({}, styleContextStack, 'font', 'Roboto');
 	var fontSize = getStyleProperty({}, styleContextStack, 'fontSize', 12);
 	var fontFeatures = getStyleProperty({}, styleContextStack, 'fontFeatures', null);
@@ -10683,7 +10683,7 @@ function splitWords(text, noWrap) {
 
 function copyStyle(source, destination) {
 	destination = destination || {};
-	source = source || {}; //TODO: default style
+	source = source || {}; // : default style
 
 	for (var key in source) {
 		if (key != 'text' && source.hasOwnProperty(key)) {
@@ -10998,7 +10998,7 @@ function isStarColumn(column) {
 	return column.width === null || column.width === undefined || column.width === '*' || column.width === 'star';
 }
 
-//TODO: refactor and reuse in measureTable
+// : refactor and reuse in measureTable
 function measureMinMax(columns) {
 	var result = { min: 0, max: 0 };
 
@@ -11416,7 +11416,7 @@ if (__webpack_require__(9)) {
       && has(desc, 'value')
       && !has(desc, 'get')
       && !has(desc, 'set')
-      // TODO: add validation descriptor w/o calling accessors
+      //  : add validation descriptor w/o calling accessors
       && !desc.configurable
       && (!has(desc, 'writable') || desc.writable)
       && (!has(desc, 'enumerable') || desc.enumerable)
@@ -12258,7 +12258,7 @@ var TO_STRING_TAG = wks('toStringTag');
 var ArrayValues = Iterators.Array;
 
 var DOMIterables = {
-  CSSRuleList: true, // TODO: Not spec compliant, should be false.
+  CSSRuleList: true, //  : Not spec compliant, should be false.
   CSSStyleDeclaration: false,
   CSSValueList: false,
   ClientRectList: false,
@@ -12271,7 +12271,7 @@ var DOMIterables = {
   HTMLCollection: false,
   HTMLFormElement: false,
   HTMLSelectElement: false,
-  MediaList: true, // TODO: Not spec compliant, should be false.
+  MediaList: true, //  : Not spec compliant, should be false.
   MimeTypeArray: false,
   NamedNodeMap: false,
   NodeList: true,
@@ -12285,7 +12285,7 @@ var DOMIterables = {
   SVGStringList: false,
   SVGTransformList: false,
   SourceBufferList: false,
-  StyleSheetList: true, // TODO: Not spec compliant, should be false.
+  StyleSheetList: true, //  : Not spec compliant, should be false.
   TextTrackCueList: false,
   TextTrackList: false,
   TouchList: false
@@ -18956,7 +18956,7 @@ function calculatePageHeight(pages, margins) {
 		} else if (item.item._height) {
 			return item.item._height;
 		} else {
-			// TODO: add support for next item types
+			//  : add support for next item types
 			return 0;
 		}
 	}
@@ -19198,7 +19198,7 @@ function renderLine(line, x, y, pdfKitDoc) {
 
 	textDecorator.drawBackground(line, x, y, pdfKitDoc);
 
-	//TODO: line.optimizeInlines();
+	// : line.optimizeInlines();
 	for (var i = 0, l = line.inlines.length; i < l; i++) {
 		var inline = line.inlines[i];
 		var shiftToBaseline = lineHeight - ((inline.font.ascender / 1000) * inline.fontSize) - descent;
@@ -19269,7 +19269,7 @@ function renderWatermark(page, pdfKitDoc) {
 }
 
 function renderVector(vector, pdfKitDoc) {
-	//TODO: pdf optimization (there's no need to write all properties everytime)
+	// : pdf optimization (there's no need to write all properties everytime)
 	pdfKitDoc.lineWidth(vector.lineWidth || 1);
 	if (vector.dash) {
 		pdfKitDoc.dash(vector.dash.length, { space: vector.dash.space || vector.dash.length, phase: vector.dash.phase || 0 });
@@ -19279,7 +19279,7 @@ function renderVector(vector, pdfKitDoc) {
 	pdfKitDoc.lineJoin(vector.lineJoin || 'miter');
 	pdfKitDoc.lineCap(vector.lineCap || 'butt');
 
-	//TODO: clipping
+	// : clipping
 
 	var gradient = null;
 
@@ -22085,7 +22085,7 @@ var VectorMixin = {
     return this._ctmStack = [];
   },
   save: function save() {
-    this._ctmStack.push(this._ctm.slice()); // TODO: save/restore colorspace and styles so not setting it unnessesarily all the time?
+    this._ctmStack.push(this._ctm.slice()); //  : save/restore colorspace and styles so not setting it unnessesarily all the time?
 
 
     return this.addContent('q');
@@ -22453,7 +22453,7 @@ function () {
     this.glyphWidths = {};
     this.boundingBoxes = {};
     this.kernPairs = {};
-    this.parse(); // todo: remove charWidths since appears to not be used
+    this.parse(); //  : remove charWidths since appears to not be used
 
     this.charWidths = new Array(256);
 
@@ -23323,7 +23323,7 @@ function (_EventEmitter) {
         var shouldContinue;
         var word = text.slice((last != null ? last.position : undefined) || 0, bk.position);
         var w = wordWidths[word] != null ? wordWidths[word] : wordWidths[word] = this.wordWidth(word); // if the word is longer than the whole line, chop it up
-        // TODO: break by grapheme clusters, not JS string characters
+        //  : break by grapheme clusters, not JS string characters
 
         if (w > this.lineWidth + this.continuedX) {
           // make some fake break objects
@@ -30803,7 +30803,7 @@ function InflateState() {
   this.dmax = 0;              /* zlib header max distance (INFLATE_STRICT) */
   this.check = 0;             /* protected copy of check value */
   this.total = 0;             /* protected copy of output count */
-  // TODO: may be {}
+  //  : may be {}
   this.head = null;           /* where to save gzip header information */
 
   /* sliding window */
@@ -31335,7 +31335,7 @@ function inflate(strm, flush) {
           if (have === 0) { break inf_leave; }
           copy = 0;
           do {
-            // TODO: 2 or 1 bytes?
+            //  : 2 or 1 bytes?
             len = input[next + copy++];
             /* use constant limit because in js we should not preallocate memory */
             if (state.head && len &&
@@ -37662,7 +37662,7 @@ var CFFBlendOp = function () {
   CFFBlendOp.decode = function decode(stream, parent, operands) {
     var numBlends = operands.pop();
 
-    // TODO: actually blend. For now just consume the deltas
+    //  : actually blend. For now just consume the deltas
     // since we don't use any of the values anyway.
     while (operands.length > numBlends) {
       operands.pop();
@@ -38061,7 +38061,7 @@ var CFFCustomEncoding = new r.VersionedStruct(new CFFEncodingVersion(), {
     nRanges: r.uint8,
     ranges: new r.Array(Range1, 'nRanges')
 
-    // TODO: supplement?
+    //  : supplement?
   } });
 
 var CFFEncoding = new PredefinedOp([StandardEncoding, ExpertEncoding], new CFFPointer(CFFCustomEncoding, { lazy: true }));
@@ -39086,7 +39086,7 @@ var JSTF = new r.Struct({
   scriptList: new r.Array(JstfScriptRecord, 'scriptCount')
 });
 
-// TODO: add this to restructure
+//  : add this to restructure
 
 var VariableSizeNumber = function () {
   function VariableSizeNumber(size) {
@@ -40227,7 +40227,7 @@ var CmapProcessor = (_class$1 = function () {
         }
 
       case 8:
-        throw new Error('TODO: cmap format 8');
+        throw new Error(' : cmap format 8');
 
       case 6:
       case 10:
@@ -40259,7 +40259,7 @@ var CmapProcessor = (_class$1 = function () {
         }
 
       case 14:
-        throw new Error('TODO: cmap format 14');
+        throw new Error(' : cmap format 14');
 
       default:
         throw new Error('Unknown cmap format ' + cmap.version);
@@ -40315,7 +40315,7 @@ var CmapProcessor = (_class$1 = function () {
         }
 
       case 8:
-        throw new Error('TODO: cmap format 8');
+        throw new Error(' : cmap format 8');
 
       case 6:
       case 10:
@@ -40346,7 +40346,7 @@ var CmapProcessor = (_class$1 = function () {
         }
 
       case 14:
-        throw new Error('TODO: cmap format 14');
+        throw new Error(' : cmap format 14');
 
       default:
         throw new Error('Unknown cmap format ' + cmap.version);
@@ -40590,7 +40590,7 @@ var UnicodeLayoutEngine = function () {
     for (var index = 0; index < glyphs.length; index++) {
       var glyph = glyphs[index];
       if (glyph.isMark) {
-        // TODO: handle ligatures
+        //  : handle ligatures
         clusterEnd = index;
       } else {
         if (clusterStart !== clusterEnd) {
@@ -40614,7 +40614,7 @@ var UnicodeLayoutEngine = function () {
 
     // adjust bounding box for ligature glyphs
     if (base.codePoints.length > 1) {
-      // LTR. TODO: RTL support.
+      // LTR.  : RTL support.
       baseBox.minX += (base.codePoints.length - 1) * baseBox.width / base.codePoints.length;
     }
 
@@ -40637,7 +40637,7 @@ var UnicodeLayoutEngine = function () {
         switch (combiningClass) {
           case 'Double_Above':
           case 'Double_Below':
-            // LTR. TODO: RTL support.
+            // LTR.  : RTL support.
             position.xOffset += baseBox.minX - markBox.width / 2 - markBox.minX;
             break;
 
@@ -44052,7 +44052,7 @@ var GlyphInfo = function () {
 
       var GDEF = this._font.GDEF;
       if (GDEF && GDEF.glyphClassDef) {
-        // TODO: clean this up
+        //  : clean this up
         var classID = OTProcessor.prototype.getClassID(id, GDEF.glyphClassDef);
         this.isBase = classID === 1;
         this.isLigature = classID === 2;
@@ -44654,7 +44654,7 @@ var IndicShaper = (_temp$2 = _class$6 = function (_DefaultShaper) {
     plan.indicConfig = INDIC_CONFIGS[plan.unicodeScript] || INDIC_CONFIGS.Default;
     plan.isOldSpec = plan.indicConfig.hasOldSpec && plan.script[plan.script.length - 1] !== '2';
 
-    // TODO: turn off kern (Khmer) and liga features.
+    //  : turn off kern (Khmer) and liga features.
   };
 
   IndicShaper.assignFeatures = function assignFeatures(plan, glyphs) {
@@ -44672,7 +44672,7 @@ var IndicShaper = (_temp$2 = _class$6 = function (_DefaultShaper) {
     };
 
     // Decompose split matras
-    // TODO: do this in a more general unicode normalizer
+    //  : do this in a more general unicode normalizer
     for (var i = glyphs.length - 1; i >= 0; i--) {
       _loop(i);
     }
@@ -45590,7 +45590,7 @@ var UniversalShaper = (_temp$3 = _class$7 = function (_DefaultShaper) {
     };
 
     // Decompose split vowels
-    // TODO: do this in a more general unicode normalizer
+    //  : do this in a more general unicode normalizer
     for (var i = glyphs.length - 1; i >= 0; i--) {
       _loop(i);
     }
@@ -45967,7 +45967,7 @@ var GSUBProcessor = function (_OTProcessor) {
           // Alternate Substitution
           var _index2 = this.coverageIndex(table.coverage);
           if (_index2 !== -1) {
-            var USER_INDEX = 0; // TODO
+            var USER_INDEX = 0; //  
             this.glyphIterator.cur.id = table.alternateSet.get(_index2)[USER_INDEX];
             return true;
           }
@@ -46191,7 +46191,7 @@ var GPOSProcessor = function (_OTProcessor) {
       }
     }
 
-    // TODO: device tables
+    //  : device tables
   };
 
   GPOSProcessor.prototype.applyLookup = function applyLookup(lookupType, table) {
@@ -46465,7 +46465,7 @@ var GPOSProcessor = function (_OTProcessor) {
   };
 
   GPOSProcessor.prototype.getAnchor = function getAnchor(anchor) {
-    // TODO: contour point, device tables
+    //  : contour point, device tables
     var x = anchor.xCoordinate;
     var y = anchor.yCoordinate;
 
@@ -47287,7 +47287,7 @@ var Glyph = (_class$8 = function () {
     this.codePoints = codePoints;
     this._font = font;
 
-    // TODO: get this info from GDEF if available
+    //  : get this info from GDEF if available
     this.isMark = this.codePoints.length > 0 && this.codePoints.every(unicode.isMark);
     this.isLigature = this.codePoints.length > 1;
   }
@@ -49594,7 +49594,7 @@ var TTFSubset = function (_Subset) {
     //         table: cmapTable
     //     ]
 
-    // TODO: subset prep, cvt, fpgm?
+    //  : subset prep, cvt, fpgm?
     Directory.encode(stream, {
       tables: {
         head: head,
@@ -53520,7 +53520,7 @@ DBCSEncoder.prototype.write = function(str) {
                     nextChar = uCode; // Current character will be written too in the next iteration.
 
                 } else {
-                    // TODO: What if we have no default? (resCode == undefined)
+                    //  : What if we have no default? (resCode == undefined)
                     // Then, we should write first char of the sequence as-is and try the rest recursively.
                     // Didn't do it for now because no encoding has this situation yet.
                     // Currently, just skip the sequence and write current char.
@@ -53592,7 +53592,7 @@ DBCSEncoder.prototype.end = function() {
                 newBuf[j++] = dbcsCode & 0xFF; // low byte
             }
         } else {
-            // See todo above.
+            // See   above.
         }
         this.seqObj = undefined;
     }
@@ -53644,7 +53644,7 @@ DBCSDecoder.prototype.write = function(buf) {
             // Normal character, just use it.
         }
         else if (uCode === UNASSIGNED) { // Unknown char.
-            // TODO: Callback with seq.
+            //  : Callback with seq.
             //var curSeq = (seqStart >= 0) ? buf.slice(seqStart, i+1) : prevBuf.slice(seqStart + prevBufOffset, i+1 + prevBufOffset);
             i = seqStart; // Try to parse again, after skipping first byte of the sequence ('i' will be incremented by 'for' cycle).
             uCode = this.defaultCharUnicode.charCodeAt(0);
@@ -53798,9 +53798,9 @@ module.exports = {
         encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
     },
 
-    // TODO: KDDI extension to Shift_JIS
-    // TODO: IBM CCSID 942 = CP932, but F0-F9 custom chars and other char changes.
-    // TODO: IBM CCSID 943 = Shift_JIS = CP932 with original Shift_JIS lower 128 chars.
+    //  : KDDI extension to Shift_JIS
+    //  : IBM CCSID 942 = CP932, but F0-F9 custom chars and other char changes.
+    //  : IBM CCSID 943 = Shift_JIS = CP932 with original Shift_JIS lower 128 chars.
 
 
     // == Chinese/GBK ==========================================================
@@ -59798,7 +59798,7 @@ LayoutBuilder.prototype.processVerticalContainer = function (node) {
 		self.processNode(item);
 		addAll(node.positions, item.positions);
 
-		//TODO: paragraph gap
+		// : paragraph gap
 	});
 };
 
@@ -60105,8 +60105,8 @@ LayoutBuilder.prototype.processCanvas = function (node) {
 	var height = node._minHeight;
 
 	if (node.absolutePosition === undefined && this.writer.context().availableHeight < height) {
-		// TODO: support for canvas larger than a page
-		// TODO: support for other overflow methods
+		//  : support for canvas larger than a page
+		//  : support for other overflow methods
 
 		this.writer.moveToNextPage();
 	}
@@ -60441,7 +60441,7 @@ DocMeasure.prototype.measureNode = function (node) {
 	var self = this;
 
 	return this.styleStack.auto(node, function () {
-		// TODO: refactor + rethink whether this is the proper way to handle margins
+		//  : refactor + rethink whether this is the proper way to handle margins
 		node._margin = getNodeMargin(node);
 
 		if (node.columns) {
@@ -60698,7 +60698,7 @@ DocMeasure.prototype.gapSizeForList = function () {
 
 DocMeasure.prototype.buildUnorderedMarker = function (styleStack, gapSize, type) {
 	function buildDisc(gapSize, color) {
-		// TODO: ascender-based calculations
+		//  : ascender-based calculations
 		var radius = gapSize.fontSize / 6;
 		return {
 			canvas: [{
@@ -60713,7 +60713,7 @@ DocMeasure.prototype.buildUnorderedMarker = function (styleStack, gapSize, type)
 	}
 
 	function buildSquare(gapSize, color) {
-		// TODO: ascender-based calculations
+		//  : ascender-based calculations
 		var size = gapSize.fontSize / 3;
 		return {
 			canvas: [{
@@ -60728,7 +60728,7 @@ DocMeasure.prototype.buildUnorderedMarker = function (styleStack, gapSize, type)
 	}
 
 	function buildCircle(gapSize, color) {
-		// TODO: ascender-based calculations
+		//  : ascender-based calculations
 		var radius = gapSize.fontSize / 6;
 		return {
 			canvas: [{
@@ -60903,7 +60903,7 @@ DocMeasure.prototype.measureOrderedList = function (node) {
 			if (item.listMarker._inlines) {
 				node._gapSize.width = Math.max(node._gapSize.width, item.listMarker._inlines[0].width);
 			}
-		}  // TODO: else - nested lists numbering
+		}  //  : else - nested lists numbering
 
 		node._minWidth = Math.max(node._minWidth, items[i]._minWidth);
 		node._maxWidth = Math.max(node._maxWidth, items[i]._maxWidth);
@@ -62456,7 +62456,7 @@ PageElementWriter.prototype.commitUnbreakableBlock = function (forcedX, forcedY)
 			fragment.xOffset = forcedX;
 			fragment.yOffset = forcedY;
 
-			//TODO: vectors can influence height in some situations
+			// : vectors can influence height in some situations
 			if (nbPages > 1) {
 				// on out-of-context blocs (headers, footers, background) height should be the whole DocumentContext height
 				if (forcedX !== undefined || forcedY !== undefined) {
@@ -62490,7 +62490,7 @@ PageElementWriter.prototype.currentBlockToRepeatable = function () {
 
 	rep.xOffset = this.originalX;
 
-	//TODO: vectors can influence height in some situations
+	// : vectors can influence height in some situations
 	rep.height = unbreakableContext.y;
 
 	rep.insertedOnPages = [];
@@ -63224,7 +63224,7 @@ TableProcessor.prototype.endRow = function (rowIndex, writer, pageBreaks) {
 		if (writer.context().page != ys[yi].page) {
 			writer.context().page = ys[yi].page;
 
-			//TODO: buggy, availableHeight should be updated on every pageChanged event
+			// : buggy, availableHeight should be updated on every pageChanged event
 			// TableProcessor should be pageChanged listener, instead of processRow
 			this.reservedAtBottom = 0;
 		}

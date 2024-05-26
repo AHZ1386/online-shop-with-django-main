@@ -190,7 +190,7 @@ var Popover = /** @class */ (function () {
     };
     // Triggers a callback. Calls a function in the option hash of the same name.
     // Arguments beyond the first `name` are forwarded on.
-    // TODO: better code reuse for this. Repeat code
+    //  : better code reuse for this. Repeat code
     // can kill this???
     Popover.prototype.trigger = function (name) {
         if (this.options[name]) {
@@ -267,7 +267,7 @@ var SimpleDayGridEventRenderer = /** @class */ (function (_super) {
         };
     };
     SimpleDayGridEventRenderer.prototype.computeDisplayEventEnd = function () {
-        return false; // TODO: somehow consider the originating DayGrid's column count
+        return false; //  : somehow consider the originating DayGrid's column count
     };
     return SimpleDayGridEventRenderer;
 }(FgEventRenderer));
@@ -613,7 +613,7 @@ var DayTile = /** @class */ (function (_super) {
     };
     DayTile.prototype._renderFrame = function (date) {
         var _a = this, theme = _a.theme, dateEnv = _a.dateEnv;
-        var title = dateEnv.format(date, createFormatter(this.opt('dayPopoverFormat')) // TODO: cache
+        var title = dateEnv.format(date, createFormatter(this.opt('dayPopoverFormat')) //  : cache
         );
         this.el.innerHTML =
             '<div class="fc-header ' + theme.getClass('popoverHeader') + '">' +
@@ -696,7 +696,7 @@ var DayBgRow = /** @class */ (function () {
 }());
 function renderCellHtml(date, dateProfile, context, otherAttrs) {
     var dateEnv = context.dateEnv, theme = context.theme;
-    var isDateValid = rangeContainsMarker(dateProfile.activeRange, date); // TODO: called too frequently. cache somehow.
+    var isDateValid = rangeContainsMarker(dateProfile.activeRange, date); //  : called too frequently. cache somehow.
     var classes = getDayClasses(date, dateProfile, context);
     classes.unshift('fc-day', theme.getClass('widgetContent'));
     return '<td class="' + classes.join(' ') + '"' +
@@ -873,7 +873,7 @@ var DayGrid = /** @class */ (function (_super) {
     DayGrid.prototype.renderNumberCellHtml = function (date) {
         var _a = this, view = _a.view, dateEnv = _a.dateEnv;
         var html = '';
-        var isDateValid = rangeContainsMarker(this.props.dateProfile.activeRange, date); // TODO: called too frequently. cache somehow.
+        var isDateValid = rangeContainsMarker(this.props.dateProfile.activeRange, date); //  : called too frequently. cache somehow.
         var isDayNumberVisible = this.getIsDayNumbersVisible() && isDateValid;
         var classes;
         var weekCalcFirstDow;
@@ -1414,7 +1414,7 @@ var DayGridView = /** @class */ (function (_super) {
         var scrollerHeight;
         var scrollbarWidths;
         // hack to give the view some height prior to dayGrid's columns being rendered
-        // TODO: separate setting height from scroller VS dayGrid.
+        //  : separate setting height from scroller VS dayGrid.
         if (!dayGrid.rowEls) {
             if (!isAuto) {
                 scrollerHeight = this.computeScrollerHeight(viewHeight);

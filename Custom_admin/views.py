@@ -7,3 +7,18 @@ def index(request):
         'users': User.objects.all().count(),
     }
     return render(request, 'Custom_admin/index.html',context)
+
+# TODO create manage_orders page
+def orders(request):
+    pass
+
+# TODO create manage_user page
+def users(request):
+    pass
+# TODO create manage_product page
+def products(request):
+    pass
+
+# TODO create product_actegorise manage page
+def product_categories(request):
+    pass

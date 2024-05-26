@@ -1241,7 +1241,7 @@ DataTable.ext.buttons.excelFlash = $.extend( {}, flashButton, {
 				for ( var j=0, jen=_excelSpecials.length ; j<jen ; j++ ) {
 					var special = _excelSpecials[j];
 
-					// TODO Need to provide the ability for the specials to say
+					//   Need to provide the ability for the specials to say
 					// if they are returning a string, since at the moment it is
 					// assumed to be a number
 					if ( row[i].match && ! row[i].match(/^0\d+/) && row[i].match( special.match ) ) {

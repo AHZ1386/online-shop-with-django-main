@@ -3847,7 +3847,7 @@ var SliderHandler = function () {
         top: e.pageY
       };
 
-      // TODO: fix moving outside the picker makes the guides to keep moving. The event needs to be bound to the window.
+      //  : fix moving outside the picker makes the guides to keep moving. The event needs to be bound to the window.
       /**
        * (window.document) Triggered on mousedown for the document object,
        * so the color adjustment guide is moved to the clicked position.
@@ -4260,7 +4260,7 @@ var PopupHandler = function () {
       cp.lastEvent.alias = 'hide';
       cp.lastEvent.e = e;
 
-      // TODO: fix having to click twice outside when losing focus and last 2 clicks where inside the colorpicker
+      //  : fix having to click twice outside when losing focus and last 2 clicks where inside the colorpicker
 
       // Prevent hide if triggered by an event and an element inside the colorpicker has been clicked/touched
       if (clicking) {

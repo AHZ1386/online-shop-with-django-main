@@ -386,7 +386,7 @@ FlateWorker.prototype.cleanUp = function () {
 
 /**
  * Create the _pako object.
- * TODO: lazy-loading this object isn't the best solution but it's the
+ *  : lazy-loading this object isn't the best solution but it's the
  * quickest. The best solution is to lazy-load the worker list. See also the
  * issue #446.
  */
@@ -651,7 +651,7 @@ var generateZipParts = function(streamInfo, streamedContent, streamingEnded, off
         decToHex(encodedComment.length, 2) +
         // disk number start
         "\x00\x00" +
-        // internal file attributes TODO
+        // internal file attributes  
         "\x00\x00" +
         // external file attributes
         decToHex(extFileAttr, 4) +
@@ -1055,7 +1055,7 @@ JSZip.prototype.loadAsync = require('./load');
 JSZip.support = require('./support');
 JSZip.defaults = require('./defaults');
 
-// TODO find a better way to handle this version,
+//   find a better way to handle this version,
 // a require('package.json').version doesn't work with webpack, see #327
 JSZip.version = "3.2.0";
 
@@ -1419,7 +1419,7 @@ var fileAdd = function(name, data, originalOptions) {
     var object = new ZipObject(name, zipObjectContent, o);
     this.files[name] = object;
     /*
-    TODO: we can't throw an exception because we have async promises
+     : we can't throw an exception because we have async promises
     (we can have a promise of a Date() for example) but returning a
     promise is useless because file(name, data) returns the JSZip
     object for chaining. Should we break that to allow the user
@@ -1518,7 +1518,7 @@ var out = {
             file = this.files[filename];
             relativePath = filename.slice(this.root.length, filename.length);
             if (relativePath && filename.slice(0, this.root.length) === this.root) { // the file is in the current root
-                cb(relativePath, file); // TODO reverse the parameters ? need to be clean AND consistent with the filter search fn...
+                cb(relativePath, file); //   reverse the parameters ? need to be clean AND consistent with the filter search fn...
             }
         }
     },
@@ -2124,7 +2124,7 @@ var utils = require('../utils');
 var GenericWorker = require('./GenericWorker');
 
 // the size of the generated chunks
-// TODO expose this as a public variable
+//   expose this as a public variable
 var DEFAULT_BLOCK_SIZE = 16 * 1024;
 
 /**
@@ -3205,7 +3205,7 @@ function arrayLikeToString(array) {
     // result += String.fromCharCode(array[i]); generate too many strings !
     //
     // This code is inspired by http://jsperf.com/arraybuffer-to-string-apply-performance/2
-    // TODO : we now have workers that split the work. Do we still need that ?
+    //   : we now have workers that split the work. Do we still need that ?
     var chunk = 65536,
         type = exports.getTypeOf(array),
         canUseApply = true;
@@ -8276,7 +8276,7 @@ function InflateState() {
   this.dmax = 0;              /* zlib header max distance (INFLATE_STRICT) */
   this.check = 0;             /* protected copy of check value */
   this.total = 0;             /* protected copy of output count */
-  // TODO: may be {}
+  //  : may be {}
   this.head = null;           /* where to save gzip header information */
 
   /* sliding window */
@@ -8808,7 +8808,7 @@ function inflate(strm, flush) {
         if (have === 0) { break inf_leave; }
         copy = 0;
         do {
-          // TODO: 2 or 1 bytes?
+          //  : 2 or 1 bytes?
           len = input[next + copy++];
           /* use constant limit because in js we should not preallocate memory */
           if (state.head && len &&

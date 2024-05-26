@@ -1028,7 +1028,7 @@ function debounce(func, wait) {
     };
 }
 // Number and Boolean are only types that defaults or not computed for
-// TODO: write more comments
+//  : write more comments
 function refineProps(rawProps, processors, defaults, leftoverProps) {
     if (defaults === void 0) { defaults = {}; }
     var refined = {};
@@ -1083,7 +1083,7 @@ function computeAlignedDayRange(timedRange) {
     return { start: start, end: end };
 }
 // given a timed range, computes an all-day range based on how for the end date bleeds into the next day
-// TODO: give nextDayThreshold a default arg
+//  : give nextDayThreshold a default arg
 function computeVisibleDayRange(timedRange, nextDayThreshold) {
     if (nextDayThreshold === void 0) { nextDayThreshold = createDuration(0); }
     var startDay = null;
@@ -1359,7 +1359,7 @@ function getRelevantEvents(eventStore, instanceId) {
             return isEventDefsGrouped(def_1, lookDef);
         });
         // add the original
-        // TODO: wish we could use eventTupleToStore or something like it
+        //  : wish we could use eventTupleToStore or something like it
         newStore.defs[def_1.defId] = def_1;
         newStore.instances[instance.instanceId] = instance;
         return newStore;
@@ -1780,7 +1780,7 @@ function formatWeekNumber(num, weekLabel, locale, display) {
     }
     // otherwise, considered 'numeric'
     parts.push(locale.simpleNumberFormat.format(num));
-    if (locale.options.isRtl) { // TODO: use control characters instead?
+    if (locale.options.isRtl) { //  : use control characters instead?
         parts.reverse();
     }
     return parts.join('');
@@ -1845,7 +1845,7 @@ function findCommonInsertion(full0, partial0, full1, partial1) {
 }
 
 /*
-TODO: fix the terminology of "formatter" vs "formatting func"
+ : fix the terminology of "formatter" vs "formatting func"
 */
 /*
 At the time of instantiation, this object does not know which cmd-formatting system it will use.
@@ -2002,7 +2002,7 @@ var EventApi = /** @class */ (function () {
         this._instance = instance || null;
     }
     /*
-    TODO: make event struct more responsible for this
+     : make event struct more responsible for this
     */
     EventApi.prototype.setProp = function (name, val) {
         var _a, _b;
@@ -2044,7 +2044,7 @@ var EventApi = /** @class */ (function () {
         if (options === void 0) { options = {}; }
         var dateEnv = this._calendar.dateEnv;
         var start = dateEnv.createMarker(startInput);
-        if (start && this._instance) { // TODO: warning if parsed bad
+        if (start && this._instance) { //  : warning if parsed bad
             var instanceRange = this._instance.range;
             var startDelta = diffDates(instanceRange.start, start, dateEnv, options.granularity); // what if parsed bad!?
             if (options.maintainDuration) {
@@ -2062,7 +2062,7 @@ var EventApi = /** @class */ (function () {
         if (endInput != null) {
             end = dateEnv.createMarker(endInput);
             if (!end) {
-                return; // TODO: warning if parsed bad
+                return; //  : warning if parsed bad
             }
         }
         if (this._instance) {
@@ -2082,11 +2082,11 @@ var EventApi = /** @class */ (function () {
         var start = dateEnv.createMarker(startInput);
         var end;
         if (!start) {
-            return; // TODO: warning if parsed bad
+            return; //  : warning if parsed bad
         }
         if (endInput != null) {
             end = dateEnv.createMarker(endInput);
-            if (!end) { // TODO: warning if parsed bad
+            if (!end) { //  : warning if parsed bad
                 return;
             }
         }
@@ -2115,19 +2115,19 @@ var EventApi = /** @class */ (function () {
     };
     EventApi.prototype.moveStart = function (deltaInput) {
         var delta = createDuration(deltaInput);
-        if (delta) { // TODO: warning if parsed bad
+        if (delta) { //  : warning if parsed bad
             this.mutate({ startDelta: delta });
         }
     };
     EventApi.prototype.moveEnd = function (deltaInput) {
         var delta = createDuration(deltaInput);
-        if (delta) { // TODO: warning if parsed bad
+        if (delta) { //  : warning if parsed bad
             this.mutate({ endDelta: delta });
         }
     };
     EventApi.prototype.moveDates = function (deltaInput) {
         var delta = createDuration(deltaInput);
-        if (delta) { // TODO: warning if parsed bad
+        if (delta) { //  : warning if parsed bad
             this.mutate({ datesDelta: delta });
         }
     };
@@ -2211,7 +2211,7 @@ var EventApi = /** @class */ (function () {
     });
     Object.defineProperty(EventApi.prototype, "id", {
         // computable props that all access the def
-        // TODO: find a TypeScript-compatible way to do this at scale
+        //  : find a TypeScript-compatible way to do this at scale
         get: function () { return this._def.publicId; },
         enumerable: true,
         configurable: true
@@ -2395,7 +2395,7 @@ function filterSegsViaEls(view, segs, isMirror) {
                     isMirror: isMirror,
                     isStart: seg.isStart,
                     isEnd: seg.isEnd,
-                    // TODO: include seg.range once all components consistently generate it
+                    //  : include seg.range once all components consistently generate it
                     el: seg.el,
                     view: view
                 }
@@ -2462,7 +2462,7 @@ function applyMutationToEventDef(eventDef, eventConfig, mutation, appliers, cale
     if (standardProps.hasEnd == null &&
         eventConfig.durationEditable &&
         (mutation.startDelta || mutation.endDelta)) {
-        standardProps.hasEnd = true; // TODO: is this mutation okay?
+        standardProps.hasEnd = true; //  : is this mutation okay?
     }
     var copy = __assign({}, eventDef, standardProps, { ui: __assign({}, eventDef.ui, standardProps.ui) });
     if (mutation.extendedProps) {
@@ -2534,7 +2534,7 @@ function reduceEventStore (eventStore, action, eventSources, dateProfile, calend
             dateProfile ? dateProfile.activeRange : null, calendar);
         case 'MERGE_EVENTS': // already parsed and expanded
             return mergeEventStores(eventStore, action.eventStore);
-        case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
+        case 'PREV': //  : how do we track all actions that affect dateProfile :(
         case 'NEXT':
         case 'SET_DATE':
         case 'SET_VIEW_TYPE':
@@ -2573,7 +2573,7 @@ function reduceEventStore (eventStore, action, eventSources, dateProfile, calend
 }
 function receiveRawEvents(eventStore, eventSource, fetchId, fetchRange, rawEvents, calendar) {
     if (eventSource && // not already removed
-        fetchId === eventSource.latestFetchId // TODO: wish this logic was always in event-sources
+        fetchId === eventSource.latestFetchId //  : wish this logic was always in event-sources
     ) {
         var subset = parseEvents(transformRawEvents(rawEvents, eventSource, calendar), eventSource.sourceId, calendar);
         if (fetchRange) {
@@ -2675,7 +2675,7 @@ function isInteractionPropsValid(state, calendar, dateSpanMeta, filterConfig) {
     if (filterConfig) {
         subjectConfigs = mapHash(subjectConfigs, filterConfig);
     }
-    var otherEventStore = excludeInstances(state.eventStore, interaction.affectedEvents.instances); // exclude the subject events. TODO: exclude defs too?
+    var otherEventStore = excludeInstances(state.eventStore, interaction.affectedEvents.instances); // exclude the subject events.  : exclude defs too?
     var otherDefs = otherEventStore.defs;
     var otherInstances = otherEventStore.instances;
     var otherConfigs = compileEventUis(otherDefs, state.eventUiBases);
@@ -2805,7 +2805,7 @@ calendar // for expanding businesshours
     }
     return []; // if it's false
 }
-// TODO: move to event-store file?
+//  : move to event-store file?
 function eventStoreToRanges(eventStore) {
     var instances = eventStore.instances;
     var ranges = [];
@@ -2814,7 +2814,7 @@ function eventStoreToRanges(eventStore) {
     }
     return ranges;
 }
-// TODO: move to geom file?
+//  : move to geom file?
 function anyRangesContainRange(outerRanges, innerRange) {
     for (var _i = 0, outerRanges_1 = outerRanges; _i < outerRanges_1.length; _i++) {
         var outerRange = outerRanges_1[_i];
@@ -3130,7 +3130,7 @@ var DEF_DEFAULTS = {
     groupId: '_businessHours' // so multiple defs get grouped
 };
 /*
-TODO: pass around as EventDefHash!!!
+ : pass around as EventDefHash!!!
 */
 function parseBusinessHours(input, calendar) {
     return parseEvents(refineInputs(input), '', calendar);
@@ -3192,7 +3192,7 @@ function memoizeRendering(renderFunc, unrenderFunc, dependencies) {
     return res;
 }
 
-var EMPTY_EVENT_STORE = createEmptyEventStore(); // for purecomponents. TODO: keep elsewhere
+var EMPTY_EVENT_STORE = createEmptyEventStore(); // for purecomponents.  : keep elsewhere
 var Splitter = /** @class */ (function () {
     function Splitter() {
         this.getKeysForEventDefs = memoize(this._getKeysForEventDefs);
@@ -3201,7 +3201,7 @@ var Splitter = /** @class */ (function () {
         this.splitIndividualUi = memoize(this._splitIndividualUi);
         this.splitEventDrag = memoize(this._splitInteraction);
         this.splitEventResize = memoize(this._splitInteraction);
-        this.eventUiBuilders = {}; // TODO: typescript protection
+        this.eventUiBuilders = {}; //  : typescript protection
     }
     Splitter.prototype.splitProps = function (props) {
         var _this = this;
@@ -3457,7 +3457,7 @@ var Mixin = /** @class */ (function () {
     };
     /*
     will override existing methods
-    TODO: remove! not used anymore
+     : remove! not used anymore
     */
     Mixin.mixOver = function (destClass) {
         var _this = this;
@@ -3490,7 +3490,7 @@ var EmitterMixin = /** @class */ (function (_super) {
         addToHash(this._handlers || (this._handlers = {}), type, handler);
         return this; // for chaining
     };
-    // todo: add comments
+    //  : add comments
     EmitterMixin.prototype.one = function (type, handler) {
         addToHash(this._oneHandlers || (this._oneHandlers = {}), type, handler);
         return this; // for chaining
@@ -3932,7 +3932,7 @@ var DateComponent = /** @class */ (function (_super) {
         _super.prototype.destroy.call(this);
         removeElement(this.el);
     };
-    // TODO: WHAT ABOUT (sourceSeg && sourceSeg.component.doesDragMirror)
+    //  : WHAT ABOUT (sourceSeg && sourceSeg.component.doesDragMirror)
     //
     // Event Drag-n-Drop Rendering (for both events and external elements)
     // ---------------------------------------------------------------------------------------------------------------
@@ -3996,7 +3996,7 @@ var DateComponent = /** @class */ (function (_super) {
     };
     // Triggering
     // -----------------------------------------------------------------------------------------------------------------
-    // TODO: move to Calendar
+    //  : move to Calendar
     DateComponent.prototype.publiclyTrigger = function (name, args) {
         var calendar = this.calendar;
         return calendar.publiclyTrigger(name, args);
@@ -4461,7 +4461,7 @@ function handlePlugins(inputs, calendar) {
     calendar.addPluginInputs(inputs); // will gracefully handle duplicates
 }
 
-var config = {}; // TODO: make these options
+var config = {}; //  : make these options
 var globalDefaults = {
     defaultRangeSeparator: ' - ',
     titleRangeSeparator: ' \u2013 ',
@@ -4528,7 +4528,7 @@ var rtlDefaults = {
         right: 'title'
     },
     buttonIcons: {
-        // TODO: make RTL support the responibility of the theme
+        //  : make RTL support the responibility of the theme
         prev: 'fc-icon-chevron-right',
         next: 'fc-icon-chevron-left',
         prevYear: 'fc-icon-chevrons-right',
@@ -4545,7 +4545,7 @@ var complexOptions = [
 function mergeOptions(optionObjs) {
     return mergeProps(optionObjs, complexOptions);
 }
-// TODO: move this stuff to a "plugin"-related file...
+//  : move this stuff to a "plugin"-related file...
 var INTERNAL_PLUGINS = [
     ArrayEventSourcePlugin,
     FuncEventSourcePlugin,
@@ -4674,7 +4674,7 @@ var OptionsManager = /** @class */ (function () {
     // Computes the flattened options hash for the calendar and assigns to `this.options`.
     // Assumes this.overrides and this.dynamicOverrides have already been initialized.
     OptionsManager.prototype.compute = function () {
-        // TODO: not a very efficient system
+        //  : not a very efficient system
         var locales = firstDefined(// explicit locale option given?
         this.dynamicOverrides.locales, this.overrides.locales, globalDefaults.locales);
         var locale = firstDefined(// explicit locales option given?
@@ -4915,7 +4915,7 @@ var DateEnv = /** @class */ (function () {
         return { unit: 'millisecond', value: m1.valueOf() - m0.valueOf() };
     };
     DateEnv.prototype.countDurationsBetween = function (m0, m1, d) {
-        // TODO: can use greatestWholeUnit
+        //  : can use greatestWholeUnit
         var diff;
         if (d.years) {
             diff = this.diffWholeYears(m0, m1);
@@ -4988,7 +4988,7 @@ var DateEnv = /** @class */ (function () {
             return weekOfYear(marker, this.weekDow, this.weekDoy);
         }
     };
-    // TODO: choke on timeZoneName: long
+    //  : choke on timeZoneName: long
     DateEnv.prototype.format = function (marker, formatter, dateOptions) {
         if (dateOptions === void 0) { dateOptions = {}; }
         return formatter.format({
@@ -5120,7 +5120,7 @@ function reduceEventSources (eventSources, action, dateProfile, calendar) {
             return addSources(eventSources, action.sources, dateProfile ? dateProfile.activeRange : null, calendar);
         case 'REMOVE_EVENT_SOURCE':
             return removeSource(eventSources, action.sourceId);
-        case 'PREV': // TODO: how do we track all actions that affect dateProfile :(
+        case 'PREV': //  : how do we track all actions that affect dateProfile :(
         case 'NEXT':
         case 'SET_DATE':
         case 'SET_VIEW_TYPE':
@@ -5575,7 +5575,7 @@ var DateProfileGenerator = /** @class */ (function () {
     };
     return DateProfileGenerator;
 }());
-// TODO: find a way to avoid comparing DateProfiles. it's tedious
+//  : find a way to avoid comparing DateProfiles. it's tedious
 function isDateProfilesEqual(p0, p1) {
     return rangesEqual(p0.validRange, p1.validRange) &&
         rangesEqual(p0.activeRange, p1.activeRange) &&
@@ -5583,7 +5583,7 @@ function isDateProfilesEqual(p0, p1) {
         durationsEqual(p0.minTime, p1.minTime) &&
         durationsEqual(p0.maxTime, p1.maxTime);
     /*
-    TODO: compare more?
+     : compare more?
       currentRange: DateRange
       currentRangeUnit: string
       isRangeAllDay: boolean
@@ -5756,7 +5756,7 @@ function parseDateSpan(raw, dateEnv, defaultDuration) {
     return span;
 }
 /*
-TODO: somehow combine with parseRange?
+ : somehow combine with parseRange?
 Will return null if the start/end props were present but parsed invalidly.
 */
 function parseOpenDateSpan(raw, dateEnv) {
@@ -6456,7 +6456,7 @@ var EventHovering = /** @class */ (function (_super) {
             }
         };
         _this.handleSegEnter = function (ev, segEl) {
-            if (getElSeg(segEl)) { // TODO: better way to make sure not hovering over more+ link or its wrapper
+            if (getElSeg(segEl)) { //  : better way to make sure not hovering over more+ link or its wrapper
                 segEl.classList.add('fc-allow-mouse-resize');
                 _this.currentSegEl = segEl;
                 _this.triggerEvent('eventMouseEnter', ev, segEl);
@@ -7193,7 +7193,7 @@ var Calendar = /** @class */ (function () {
                 end: endDate
             };
         }
-        var selection = parseDateSpan(selectionInput, this.dateEnv, createDuration({ days: 1 }) // TODO: cache this?
+        var selection = parseDateSpan(selectionInput, this.dateEnv, createDuration({ days: 1 }) //  : cache this?
         );
         if (selection) { // throw parse error otherwise?
             this.dispatch({ type: 'SELECT_DATES', selection: selection });
@@ -7219,7 +7219,7 @@ var Calendar = /** @class */ (function () {
             }
         ]);
     };
-    // TODO: receive pev?
+    //  : receive pev?
     Calendar.prototype.triggerDateClick = function (dateSpan, dayEl, view, ev) {
         var arg = __assign({}, this.buildDatePointApi(dateSpan), { dayEl: dayEl, jsEvent: ev, // Is this always a mouse event? See #4655
             view: view });
@@ -7259,7 +7259,7 @@ var Calendar = /** @class */ (function () {
     // Event-Date Utilities
     // -----------------------------------------------------------------------------------------------------------------
     // Given an event's allDay status and start date, return what its fallback end date should be.
-    // TODO: rename to computeDefaultEventEnd
+    //  : rename to computeDefaultEventEnd
     Calendar.prototype.getDefaultEventEnd = function (allDay, marker) {
         var end = marker;
         if (allDay) {
@@ -7281,7 +7281,7 @@ var Calendar = /** @class */ (function () {
             if (!this.state.eventStore.defs[def.defId]) {
                 this.dispatch({
                     type: 'ADD_EVENTS',
-                    eventStore: eventTupleToStore({ def: def, instance: instance }) // TODO: better util for two args?
+                    eventStore: eventTupleToStore({ def: def, instance: instance }) //  : better util for two args?
                 });
             }
             return eventInput;
@@ -7291,9 +7291,9 @@ var Calendar = /** @class */ (function () {
             sourceId = sourceInput.internalEventSource.sourceId;
         }
         else if (sourceInput != null) {
-            var sourceApi = this.getEventSourceById(sourceInput); // TODO: use an internal function
+            var sourceApi = this.getEventSourceById(sourceInput); //  : use an internal function
             if (!sourceApi) {
-                console.warn('Could not find an event source with ID "' + sourceInput + '"'); // TODO: test
+                console.warn('Could not find an event source with ID "' + sourceInput + '"'); //  : test
                 return null;
             }
             else {
@@ -7310,7 +7310,7 @@ var Calendar = /** @class */ (function () {
         }
         return null;
     };
-    // TODO: optimize
+    //  : optimize
     Calendar.prototype.getEventById = function (id) {
         var _a = this.state.eventStore, defs = _a.defs, instances = _a.instances;
         id = String(id);
@@ -7380,7 +7380,7 @@ var Calendar = /** @class */ (function () {
             return sourceInput;
         }
         var eventSource = parseEventSource(sourceInput, this);
-        if (eventSource) { // TODO: error otherwise?
+        if (eventSource) { //  : error otherwise?
             this.dispatch({ type: 'ADD_EVENT_SOURCES', sources: [eventSource] });
             return new EventSourceApi(this, eventSource);
         }
@@ -7630,7 +7630,7 @@ var View = /** @class */ (function (_super) {
     ------------------------------------------------------------------------------------------------------------------*/
     // Immediately render the current time indicator and begins re-rendering it at an interval,
     // which is defined by this.getNowIndicatorUnit().
-    // TODO: somehow do this for the current whole day's background too
+    //  : somehow do this for the current whole day's background too
     View.prototype.startNowIndicator = function (dateProfile) {
         var _this = this;
         var dateEnv = this.dateEnv;
@@ -7645,7 +7645,7 @@ var View = /** @class */ (function (_super) {
                 this.initialNowQueriedMs = new Date().valueOf();
                 // wait until the beginning of the next interval
                 delay = dateEnv.add(dateEnv.startOf(this.initialNowDate, unit), createDuration(1, unit)).valueOf() - this.initialNowDate.valueOf();
-                // TODO: maybe always use setTimeout, waiting until start of next unit
+                //  : maybe always use setTimeout, waiting until start of next unit
                 this.nowIndicatorTimeoutID = setTimeout(function () {
                     _this.nowIndicatorTimeoutID = null;
                     update();
@@ -7962,7 +7962,7 @@ var FgEventRenderer = /** @class */ (function () {
 function buildSegCompareObj(seg) {
     var eventDef = seg.eventRange.def;
     var range = seg.eventRange.instance.range;
-    var start = range.start ? range.start.valueOf() : 0; // TODO: better support for open-range events
+    var start = range.start ? range.start.valueOf() : 0; //  : better support for open-range events
     var end = range.end ? range.end.valueOf() : 0; // "
     return __assign({}, eventDef.extendedProps, eventDef, { id: eventDef.publicId, start: start,
         end: end, duration: end - start, allDay: Number(eventDef.allDay), _seg: seg // for later retrieval
@@ -8128,7 +8128,7 @@ function formatDate(dateInput, settings) {
     var dateEnv = buildDateEnv$1(settings);
     var formatter = createFormatter(settings);
     var dateMeta = dateEnv.createMarkerMeta(dateInput);
-    if (!dateMeta) { // TODO: warning?
+    if (!dateMeta) { //  : warning?
         return '';
     }
     return dateEnv.format(dateMeta.marker, formatter, {
@@ -8141,7 +8141,7 @@ function formatRange(startInput, endInput, settings // mixture of env and format
     var formatter = createFormatter(settings, globalDefaults.defaultRangeSeparator);
     var startMeta = dateEnv.createMarkerMeta(startInput);
     var endMeta = dateEnv.createMarkerMeta(endInput);
-    if (!startMeta || !endMeta) { // TODO: warning?
+    if (!startMeta || !endMeta) { //  : warning?
         return '';
     }
     return dateEnv.formatRange(startMeta.marker, endMeta.marker, formatter, {
@@ -8150,9 +8150,9 @@ function formatRange(startInput, endInput, settings // mixture of env and format
         isEndExclusive: settings.isEndExclusive
     });
 }
-// TODO: more DRY and optimized
+//  : more DRY and optimized
 function buildDateEnv$1(settings) {
-    var locale = buildLocale(settings.locale || 'en', parseRawLocales([]).map); // TODO: don't hardcode 'en' everywhere
+    var locale = buildLocale(settings.locale || 'en', parseRawLocales([]).map); //  : don't hardcode 'en' everywhere
     // ensure required settings
     settings = __assign({ timeZone: globalDefaults.timeZone, calendarSystem: 'gregory' }, settings, { locale: locale });
     return new DateEnv(settings);
@@ -8190,7 +8190,7 @@ function computeFallbackHeaderFormat(datesRepDistinctDays, dayCnt) {
 }
 function renderDateCell(dateMarker, dateProfile, datesRepDistinctDays, colCnt, colHeadFormat, context, colspan, otherAttrs) {
     var view = context.view, dateEnv = context.dateEnv, theme = context.theme, options = context.options;
-    var isDateValid = rangeContainsMarker(dateProfile.activeRange, dateMarker); // TODO: called too frequently. cache somehow.
+    var isDateValid = rangeContainsMarker(dateProfile.activeRange, dateMarker); //  : called too frequently. cache somehow.
     var classNames = [
         'fc-day-header',
         theme.getClass('widgetHeader')
@@ -8431,7 +8431,7 @@ var Slicer = /** @class */ (function () {
             eventDrag: this.sliceEventDrag.apply(this, [props.eventDrag, eventUiBases, dateProfile, nextDayThreshold, component].concat(extraArgs)),
             eventResize: this.sliceEventResize.apply(this, [props.eventResize, eventUiBases, dateProfile, nextDayThreshold, component].concat(extraArgs)),
             eventSelection: props.eventSelection
-        }; // TODO: give interactionSegs?
+        }; //  : give interactionSegs?
     };
     Slicer.prototype.sliceNowDate = function (// does not memoize
     date, component) {
@@ -8509,7 +8509,7 @@ var Slicer = /** @class */ (function () {
     /*
     "complete" seg means it has component and eventRange
     */
-    Slicer.prototype.sliceEventRanges = function (eventRanges, component, // TODO: kill
+    Slicer.prototype.sliceEventRanges = function (eventRanges, component, //  : kill
     extraArgs) {
         var segs = [];
         for (var _i = 0, eventRanges_1 = eventRanges; _i < eventRanges_1.length; _i++) {
@@ -8521,7 +8521,7 @@ var Slicer = /** @class */ (function () {
     /*
     "complete" seg means it has component and eventRange
     */
-    Slicer.prototype.sliceEventRange = function (eventRange, component, // TODO: kill
+    Slicer.prototype.sliceEventRange = function (eventRange, component, //  : kill
     extraArgs) {
         var segs = this.sliceRange.apply(this, [eventRange.range].concat(extraArgs));
         for (var _i = 0, segs_2 = segs; _i < segs_2.length; _i++) {
@@ -8537,7 +8537,7 @@ var Slicer = /** @class */ (function () {
 }());
 /*
 for incorporating minTime/maxTime if appropriate
-TODO: should be part of DateProfile!
+ : should be part of DateProfile!
 TimelineDateProfile already does this btw
 */
 function computeActiveRange(dateProfile, isComponentAllDay) {

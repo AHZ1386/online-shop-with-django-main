@@ -3,7 +3,7 @@ import Layout from './Layout'
 import PushMenu from './PushMenu'
 import Treeview from './Treeview'
 import DirectChat from './DirectChat'
-import TodoList from './TodoList'
+import  List from './ List'
 import CardWidget from './CardWidget'
 import CardRefresh from './CardRefresh'
 import Dropdown from './Dropdown'
@@ -14,7 +14,7 @@ export {
   PushMenu,
   Treeview,
   DirectChat,
-  TodoList,
+   List,
   CardWidget,
   CardRefresh,
   Dropdown

@@ -901,23 +901,23 @@
 
   /**
    * --------------------------------------------
-   * AdminLTE TodoList.js
+   * AdminLTE  List.js
    * License MIT
    * --------------------------------------------
    */
-  var TodoList = function ($) {
+  var  List = function ($) {
     /**
      * Constants
      * ====================================================
      */
-    var NAME = 'TodoList';
-    var DATA_KEY = 'lte.todolist';
+    var NAME = ' List';
+    var DATA_KEY = 'lte. list';
     var JQUERY_NO_CONFLICT = $.fn[NAME];
     var Selector = {
-      DATA_TOGGLE: '[data-widget="todo-list"]'
+      DATA_TOGGLE: '[data-widget=" -list"]'
     };
     var ClassName = {
-      TODO_LIST_DONE: 'done'
+       _LIST_DONE: 'done'
     };
     var Default = {
       onCheck: function onCheck(item) {
@@ -933,10 +933,10 @@
 
     };
 
-    var TodoList =
+    var  List =
     /*#__PURE__*/
     function () {
-      function TodoList(element, config) {
+      function  List(element, config) {
         this._config = config;
         this._element = element;
 
@@ -944,10 +944,10 @@
       } // Public
 
 
-      var _proto = TodoList.prototype;
+      var _proto =  List.prototype;
 
       _proto.toggle = function toggle(item) {
-        item.parents('li').toggleClass(ClassName.TODO_LIST_DONE);
+        item.parents('li').toggleClass(ClassName. _LIST_DONE);
 
         if (!$(item).prop('checked')) {
           this.unCheck($(item));
@@ -968,21 +968,21 @@
 
       _proto._init = function _init() {
         var that = this;
-        $(Selector.DATA_TOGGLE).find('input:checkbox:checked').parents('li').toggleClass(ClassName.TODO_LIST_DONE);
+        $(Selector.DATA_TOGGLE).find('input:checkbox:checked').parents('li').toggleClass(ClassName. _LIST_DONE);
         $(Selector.DATA_TOGGLE).on('change', 'input:checkbox', function (event) {
           that.toggle($(event.target));
         });
       } // Static
       ;
 
-      TodoList._jQueryInterface = function _jQueryInterface(config) {
+       List._jQueryInterface = function _jQueryInterface(config) {
         return this.each(function () {
           var data = $(this).data(DATA_KEY);
 
           var _config = $.extend({}, Default, $(this).data());
 
           if (!data) {
-            data = new TodoList($(this), _config);
+            data = new  List($(this), _config);
             $(this).data(DATA_KEY, data);
           }
 
@@ -992,7 +992,7 @@
         });
       };
 
-      return TodoList;
+      return  List;
     }();
     /**
      * Data API
@@ -1001,22 +1001,22 @@
 
 
     $(window).on('load', function () {
-      TodoList._jQueryInterface.call($(Selector.DATA_TOGGLE));
+       List._jQueryInterface.call($(Selector.DATA_TOGGLE));
     });
     /**
      * jQuery API
      * ====================================================
      */
 
-    $.fn[NAME] = TodoList._jQueryInterface;
-    $.fn[NAME].Constructor = TodoList;
+    $.fn[NAME] =  List._jQueryInterface;
+    $.fn[NAME].Constructor =  List;
 
     $.fn[NAME].noConflict = function () {
       $.fn[NAME] = JQUERY_NO_CONFLICT;
-      return TodoList._jQueryInterface;
+      return  List._jQueryInterface;
     };
 
-    return TodoList;
+    return  List;
   }(jQuery);
 
   /**
@@ -1531,7 +1531,7 @@
   exports.Dropdown = Dropdown;
   exports.Layout = Layout;
   exports.PushMenu = PushMenu;
-  exports.TodoList = TodoList;
+  exports. List =  List;
   exports.Treeview = Treeview;
 
   Object.defineProperty(exports, '__esModule', { value: true });

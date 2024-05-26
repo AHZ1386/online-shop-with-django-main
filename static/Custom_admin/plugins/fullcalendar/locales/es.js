@@ -20,7 +20,7 @@
             list: "Agenda"
         },
         weekLabel: "Sm",
-        allDayHtml: "Todo<br/>el día",
+        allDayHtml: " <br/>el día",
         eventLimitText: "más",
         noEventsMessage: "No hay eventos para mostrar"
     };

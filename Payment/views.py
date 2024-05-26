@@ -47,7 +47,6 @@ def go_to_gateway_view(request):
 
                 except AZBankGatewaysException as e:
                     logging.critical(e)
-                    # TODO: redirect to failed page.
                     HttpResponse("")
 
 

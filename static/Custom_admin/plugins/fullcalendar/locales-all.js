@@ -374,7 +374,7 @@
             list: "Agenda"
         },
         weekLabel: "Sm",
-        allDayHtml: "Todo<br/>el día",
+        allDayHtml: " <br/>el día",
         eventLimitText: "más",
         noEventsMessage: "No hay eventos para mostrar"
     };
@@ -395,7 +395,7 @@
             list: "Agenda"
         },
         weekLabel: "Sm",
-        allDayHtml: "Todo<br/>el día",
+        allDayHtml: " <br/>el día",
         eventLimitText: "más",
         noEventsMessage: "No hay eventos para mostrar"
     };
@@ -567,7 +567,7 @@
             list: "Axenda"
         },
         weekLabel: "Sm",
-        allDayHtml: "Todo<br/>o día",
+        allDayHtml: " <br/>o día",
         eventLimitText: "máis",
         noEventsMessage: "Non hai eventos para amosar"
     };
@@ -1030,7 +1030,7 @@
             list: "Agenda"
         },
         weekLabel: "Sem",
-        allDayText: "Todo o dia",
+        allDayText: "  o dia",
         eventLimitText: "mais",
         noEventsMessage: "Não há eventos para mostrar"
     };

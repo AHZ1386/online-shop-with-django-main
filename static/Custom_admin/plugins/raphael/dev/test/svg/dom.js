@@ -107,7 +107,7 @@
     equalNodePositionWrapped(assert, el.node, anchor, paper.canvas, xAnchor, yAnchor);
   });
 
-// TODO...
+//  ...
 // insertBefore: with set
 // insertBefore: with nested set.
 
@@ -195,7 +195,7 @@
     equalNodePositionWrapped(assert, el.node, anchor, paper.canvas, xAnchor, yAnchor);
   });
 
-// TODO...
+//  ...
 // insertAfter: with set
 // insertAfter: with nested set.
 
