@@ -80,7 +80,7 @@ def callback_gateway_view(request):
 
         for item in user.shopping_cart.all():
             order.products.add(item)
-
+            item.quantity -=1
         user.shopping_cart.clear()
 
         # پرداخت با موفقیت انجام پذیرفته است و بانک تایید کرده است.
