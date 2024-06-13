@@ -27,15 +27,15 @@ class Brad(models.Model):
     def __str__(self):
         return self.name
 class Product(models.Model):
-    title = models.CharField(max_length=100, null=True)
-    description = models.TextField(null=True)
-    price = models.IntegerField(null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='cat')
-    image_1 = models.ImageField(upload_to='Product', null=True)
-    image_2 = models.ImageField(upload_to='Product', null=True)
-    image_3 = models.ImageField(upload_to='Product', null=True)
-    Brad = models.ForeignKey(Brad, on_delete=models.CASCADE,null=True, related_name='brand')
-    slug = models.SlugField(max_length=50, null=True)
+    title = models.CharField(max_length=100, null=True,help_text='نام')
+    description = models.TextField(null=True,help_text='توضیحات')
+    price = models.IntegerField(null=True,help_text='قیمت')
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True, related_name='cat',help_text='دسته بندی')
+    image_1 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 1')
+    image_2 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 2')
+    image_3 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 3')
+    Brad = models.ForeignKey(Brad, on_delete=models.CASCADE,null=True, related_name='brand',help_text='برند')
+    slug = models.SlugField(max_length=50, null=True,help_text='اسلاگ')
 
     def __str__(self):
         return self.title

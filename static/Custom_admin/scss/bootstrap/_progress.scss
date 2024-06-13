@@ -15,7 +15,7 @@
 .progress {
   display: block;
   width: 100%;
-  height: $spacer-y; // todo: make a new var for this
+  height: $spacer-y; //
   margin-bottom: $spacer-y;
 }
 .progress[value] {

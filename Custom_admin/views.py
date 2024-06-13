@@ -1,7 +1,8 @@
 from Store.models import Order, Product
 from django.shortcuts import render
 from  Account.models import User
-from django.views.generic import ListView
+from django.views.generic import ListView,CreateView
+from . import forms
 def index(request):
     context = {
         'orders': Order.objects.exclude(status='do').count(),
@@ -11,7 +12,7 @@ def index(request):
     }
     return render(request, 'Custom_admin/index.html',context)
 
-# TODO create manage_orders page
+
 class OrderListView(ListView):
     model = Order
     context_object_name = 'orders'
@@ -31,5 +32,11 @@ class ProductListView(ListView):
     template_name = 'Custom_admin/product_list.html'
 
 # TODO create product_actegorise manage page
-def product_categories(request):
-    pass
+# TODO create manage_orders page
+# TODO create manage_users page
+
+class ProductCreateView(CreateView):
+    model = Product
+    form_class = forms.ProductCreateForm
+    template_name = 'Custom_admin/product_create.html'
+    success_url = '/'
