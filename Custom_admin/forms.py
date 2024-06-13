@@ -13,7 +13,9 @@ class ProductCreateForm(forms.ModelForm):
         self.fields['price'].widget.attrs.update({'class': 'form-control'})
         self.fields['image_1'].widget.attrs.update({'class': 'file-input'})
         self.fields['image_2'].widget.attrs.update({'class': 'file-input'})
+        self.fields['slug'].widget.attrs.update({'class': 'file-input'})
         self.fields['image_3'].widget.attrs.update({'class': 'file-input'})
         self.fields['Brad'].widget.attrs.update({'class': 'form-control input-sm'})
         self.fields['category'].widget.attrs.update({'class': 'form-control'})
+        self.fields['quantity'].widget.attrs.update({'class': 'form-control'})
 

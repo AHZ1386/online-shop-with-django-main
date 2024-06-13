@@ -35,7 +35,8 @@ class Product(models.Model):
     image_2 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 2')
     image_3 = models.ImageField(upload_to='Product', null=True,help_text='تصویر 3')
     Brad = models.ForeignKey(Brad, on_delete=models.CASCADE,null=True, related_name='brand',help_text='برند')
-    slug = models.SlugField(max_length=50, null=True,help_text='اسلاگ')
+    slug = models.SlugField(max_length=50, null=True,help_text='اسلاگ',allow_unicode=True)
+    quantity = models.IntegerField(help_text='تعداد در انبار', null=True)
 
     def __str__(self):
         return self.title

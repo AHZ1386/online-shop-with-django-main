@@ -1,6 +1,7 @@
 from Store.models import Order, Product
 from django.shortcuts import render
 from  Account.models import User
+from django.shortcuts import redirect
 from django.views.generic import ListView,CreateView
 from . import forms
 def index(request):
@@ -31,12 +32,9 @@ class ProductListView(ListView):
     paginate_by = 20
     template_name = 'Custom_admin/product_list.html'
 
-# TODO create product_actegorise manage page
-# TODO create manage_orders page
-# TODO create manage_users page
 
 class ProductCreateView(CreateView):
     model = Product
     form_class = forms.ProductCreateForm
     template_name = 'Custom_admin/product_create.html'
-    success_url = '/'
+    success_url = '/custom-admin/products/'
