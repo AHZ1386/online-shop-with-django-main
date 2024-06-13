@@ -58,22 +58,31 @@
         <nav class="sidebar-nav open">
             <ul class="nav">
                 <li class="nav-item open">
-                    <a class="nav-link active" href="index.html"><i class="icon-speedometer"></i> داشبرد <span
-                            class="tag tag-info">جدید</span></a>
+                    <a class="nav-link active" href="{% url 'Custom_admin:index' %}"><i class="icon-speedometer"></i> داشبرد <span
+                            class="tag tag-info"></span></a>
                 </li>
 
                 <li class="nav-title">
-                    مدیریت کاربران
+                    کالا ها
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="icon-user-follow"></i> ثبت کاربر</a>
-
-
+                    <a class="nav-link" href="{% url 'Custom_admin:products' %}"><i class="fa fa-shopping-bag fa-lg m-t-2"></i>لیست کالا ها</a>
                 </li>
-
-
-
-
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Custom_admin:create_product' %}"><i class="fa fa-shopping-bag fa-lg m-t-2"></i>افزودن کالا</a>
+                </li>
+                <li class="nav-title">
+                    سفارشات
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Custom_admin:orders' %}"><i class="fa fa-cc-discover fa-lg m-t-2"></i>لیست سفارشات</a>
+                </li>
+                <li class="nav-title">
+                    کاربران
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'Custom_admin:users' %}"><i class="icon-user-follow"></i>لیست کاربران</a>
+                </li>
 
 
 
@@ -98,7 +107,7 @@
             <li class="breadcrumb-menu">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <a class="btn btn-secondary" href="#"><i class="icon-speech"></i></a>
-                    <a class="btn btn-secondary" href="./"><i class="icon-graph"></i> &nbsp;داشبرد</a>
+                    <a class="btn btn-secondary" href=""><i class="icon-graph"></i> &nbsp;داشبرد</a>
                     <a class="btn btn-secondary" href="#"><i class="icon-settings"></i> &nbsp;تنظیمات</a>
                 </div>
             </li>
