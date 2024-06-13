@@ -1,0 +1,7 @@
+{
+    "app":"peaceful-allen-bnyaojez5",
+    "django": {
+      "timezone": "Asia/Theran",
+      "pythonVersion": "3.11"
+    }
+}

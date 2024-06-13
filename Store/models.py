@@ -24,7 +24,8 @@ class Brad(models.Model):
     name = models.CharField(max_length=75)
     slug = models.SlugField(max_length=50, null=True)
     image = models.ImageField(upload_to='Product/brand', null=True)
-
+    def __str__(self):
+        return self.name
 class Product(models.Model):
     title = models.CharField(max_length=100, null=True)
     description = models.TextField(null=True)
