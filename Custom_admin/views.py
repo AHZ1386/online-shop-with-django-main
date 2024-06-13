@@ -2,7 +2,7 @@ from Store.models import Order, Product
 from django.shortcuts import render
 from  Account.models import User
 from django.shortcuts import redirect
-from django.views.generic import ListView, CreateView, UpdateView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from . import forms
 def index(request):
     context = {
@@ -43,4 +43,9 @@ class ProductUpdateView(UpdateView):
     model = Product
     form_class = forms.ProductUpdateForm
     template_name = 'Custom_admin/product_update.html'
+    success_url = '/custom-admin/products/'
+
+class ProductDeleteView(DeleteView):
+    model = Product
+    template_name = 'Custom_admin/product_delete.html'
     success_url = '/custom-admin/products/'
