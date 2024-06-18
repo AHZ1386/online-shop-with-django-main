@@ -79,3 +79,4 @@ class Otp(models.Model):
     expiration_date = models.DateTimeField(null=True)
     def __str__(self):
         return f'User: : "{self.user.phone_number}" Otp_code: {self.otp}'
+

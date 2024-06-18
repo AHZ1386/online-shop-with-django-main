@@ -6,7 +6,7 @@ from phonenumber_field.formfields import PhoneNumberField
 import phonenumbers
 
 class UserCreateForm(UserCreationForm):
-
+    phone_number = forms.IntegerField()
 
     class Meta:
         model = User
