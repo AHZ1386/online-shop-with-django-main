@@ -1,4 +1,4 @@
-from Store.models import Product
+from Store.models import Product,Order
 from django import forms
 
 class ProductCreateForm(forms.ModelForm):
@@ -35,3 +35,11 @@ class ProductUpdateForm(forms.ModelForm):
         self.fields['Brad'].widget.attrs.update({'class': 'form-control input-sm'})
         self.fields['category'].widget.attrs.update({'class': 'form-control'})
         self.fields['quantity'].widget.attrs.update({'class': 'form-control'})
+
+class OrderUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Order
+        fields = ('status',)
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['status'].widget.attrs.update({'class': 'form-control'})
