@@ -18,7 +18,7 @@ def index(request):
 
     }
     return render(request, 'Custom_admin/index.html',context)
-@superuser_required()
+
 class ProductUpdateView(UpdateView):
     model = Product
     form_class = forms.ProductUpdateForm
