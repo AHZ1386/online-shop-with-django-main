@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, Http404, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404,reverse
 from django.views.generic import CreateView, UpdateView
 from random import randint
-from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm
+from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm,LoginForm
 from .models import User
 from .models import Otp
 from django.contrib.auth import login,logout,update_session_auth_hash
@@ -107,13 +107,21 @@ def profile(request):
 
 class UserLoginView(LoginView):
     template_name = 'Account/login.html'
+    form_class = LoginForm  # Add the form class here
 
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return HttpResponseRedirect('/')
         else:
-            return super().get(request, *args, **kwargs)
+            form = self.form_class()  # Instantiate the form
+            return render(request, self.template_name, {'form': form})
 
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            phone_number = form.cleaned_data['phone_number']
+            # Perform any necessary processing with the phone number
+        return super().post(request, *args, **kwargs)
 @login_required()
 def user_cart(request):
     user = request.user
@@ -156,7 +164,7 @@ def change_password(request):
     return render(request,template_name='Account/chang_password.html',context={'form':form})
 
 @login_required()
-def login_view(request):
+def logout(request):
     logout(request)
     messages.success(request,'با موفقیت از اکانت خارج شدید')
     return HttpResponseRedirect('/')

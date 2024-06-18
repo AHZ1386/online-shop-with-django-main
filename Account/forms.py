@@ -38,3 +38,9 @@ class ChangePasswordForm(forms.Form):
 
         if new_password != confirm_password:
             raise forms.ValidationError("پسورد های جدید یکی نیستند")
+
+
+class LoginForm(forms.Form):
+    phone_number = forms.IntegerField(label='Phone Number', widget=forms.TextInput(attrs={'type': 'number'}))
+    password = forms.CharField()
+
