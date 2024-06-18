@@ -27,7 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-CSRF_TRUSTED_ORIGINS = ['http://localhost:8000', 'https://shop-zeinali.runflare.run/']
+CSRF_TRUSTED_ORIGINS = ['https://www.shop-zeinali.runflare.run/', 'https://shop-zeinali.runflare.run/']
 # Application definition
 
 INSTALLED_APPS = [
