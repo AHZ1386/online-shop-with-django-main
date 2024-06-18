@@ -31,4 +31,4 @@ urlpatterns = [
                   #Custom Admin
     path('custom-admin/',include('Custom_admin.urls')),
     
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
