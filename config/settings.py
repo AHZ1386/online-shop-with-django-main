@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-b6^it$caw*(%=n=7^z2ii@5a&vc0s1&ghfh22w(o_se82_^5wn'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['shop-zeinali.runflare.run','*']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
