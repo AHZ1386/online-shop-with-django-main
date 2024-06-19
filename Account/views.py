@@ -105,11 +105,6 @@ def remove_from_cart(request, id):
 def profile(request):
         return render(request, 'Account/profile.html')
 
-
-
-
-
-
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -120,7 +115,7 @@ def login_view(request):
             user = authenticate(phone_number=str(phone_number), password=password)
             if user is not None:
                 login(request, user)  # اینجا دومین پارامتر را به عنوان کاربر ارسال می‌کنیم
-                redirect('index')
+                return HttpResponseRedirect('/')
 
     else:
         form = LoginForm()
