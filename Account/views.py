@@ -113,10 +113,14 @@ def login_view(request):
             password = form.cleaned_data.get('password')
 
             user = authenticate(phone_number=str(phone_number), password=password)
+            if user is not None:
+                login(request, user)  # اینجا دومین پارامتر را به عنوان کاربر ارسال می‌کنیم
+                return HttpResponseRedirect('/')
 
-            login(request, user)  # اینجا دومین پارامتر را به عنوان کاربر ارسال می‌کنیم
-            return HttpResponseRedirect('/')
+        else:
+            form = LoginForm()
 
+        return render(request, 'Account/login.html', {'form': form})
     else:
         form = LoginForm()
 
