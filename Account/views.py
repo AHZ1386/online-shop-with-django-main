@@ -105,23 +105,26 @@ def profile(request):
         return render(request, 'Account/profile.html')
 
 
-class UserLoginView(LoginView):
-    template_name = 'Account/login.html'
-    form_class = LoginForm  # Add the form class here
 
-    def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
-            return HttpResponseRedirect('/')
-        else:
-            form = self.form_class()  # Instantiate the form
-            return render(request, self.template_name, {'form': form})
 
-    def post(self, request, *args, **kwargs):
-        form = self.form_class(request.POST)
+
+
+def login_view(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
         if form.is_valid():
-            phone_number = form.cleaned_data['phone_number']
-            # Perform any necessary processing with the phone number
-        return super().post(request, *args, **kwargs)
+            phone_number = form.cleaned_data.get('phone_number')
+            password = form.cleaned_data.get('password')
+
+            user = authenticate(phone_number=str(phone_number), password=password)
+            if user is not None:
+                login(request, user)  # اینجا دومین پارامتر را به عنوان کاربر ارسال می‌کنیم
+                redirect('index')
+
+    else:
+        form = LoginForm()
+
+    return render(request, 'Account/login.html', {'form': form})
 @login_required()
 def user_cart(request):
     user = request.user

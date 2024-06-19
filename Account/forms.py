@@ -4,7 +4,7 @@ from .models import User,Otp
 from django.contrib.auth.forms import UserCreationForm
 from phonenumber_field.formfields import PhoneNumberField
 import phonenumbers
-
+from phonenumber_field.formfields import PhoneNumberField
 class UserCreateForm(UserCreationForm):
     phone_number = forms.IntegerField()
 
@@ -41,6 +41,5 @@ class ChangePasswordForm(forms.Form):
 
 
 class LoginForm(forms.Form):
-    phone_number = forms.IntegerField(label='Phone Number', widget=forms.TextInput(attrs={'type': 'number'}))
-    password = forms.CharField()
-
+    phone_number = forms.IntegerField()
+    password = forms.CharField(widget=forms.PasswordInput())
