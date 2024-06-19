@@ -9,11 +9,12 @@ from random import randint
 from .forms import UserCreateForm, UserProfileForm,OtpForm,ChangePasswordForm,LoginForm
 from .models import User
 from .models import Otp
-from django.contrib.auth import login,logout,update_session_auth_hash
+from django.contrib.auth import login,logout,update_session_auth_hash ,authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
 from django.db import transaction
+
 @transaction.atomic
 def generate_otp(user):
     try:
